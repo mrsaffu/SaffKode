@@ -1,0 +1,569 @@
+.services {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* =========================================================
+   BACKGROUND ATMOSPHERE
+   ========================================================= */
+
+/* .backgroundGlow {
+  position: absolute;
+  top: -100px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 193, 7, 0.09) 0%,
+    rgba(255, 193, 7, 0.035) 32%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: -1;
+  animation: ambientGlow 7s ease-in-out infinite alternate;
+} */
+
+.decorativeSpark {
+  position: absolute;
+  top: -20px;
+  right: 3%;
+  width: 1px;
+  height: 205px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 205, 30, 0.9),
+    transparent
+  );
+  transform: rotate(-40deg);
+  transform-origin: center;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.decorativeSpark::before,
+.decorativeSpark::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 132px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 205, 30, 0.75),
+    transparent
+  );
+  transform: translate(-50%, -50%);
+}
+
+.decorativeSpark::after {
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 205, 30, 0.75),
+    transparent
+  );
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 30px;
+}
+
+.viewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-bottom: 5px;
+  color: var(--color-accent);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 240ms ease,
+    transform 240ms ease,
+    gap 240ms ease,
+    text-shadow 240ms ease;
+}
+
+.viewAll svg {
+  transition:
+    transform 240ms ease,
+    filter 240ms ease;
+}
+
+.viewAll:hover {
+  color: #ffd21f;
+  gap: 13px;
+  transform: translateX(2px);
+  text-shadow: 0 0 16px rgba(255, 193, 7, 0.35);
+}
+
+.viewAll:hover svg {
+  transform: translateX(3px);
+  filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.45));
+}
+
+.viewAll:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 7px;
+  border-radius: 3px;
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* =========================================================
+   SERVICE CARD
+   ========================================================= */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 188px;
+  padding: 20px 20px 18px;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(24, 29, 30, 0.92) 0%,
+      rgba(13, 17, 18, 0.96) 55%,
+      rgba(9, 12, 13, 0.98) 100%
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 10px 30px rgba(0, 0, 0, 0.14);
+
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    background 320ms ease;
+}
+
+/* Top highlight */
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(255, 193, 7, 0.08),
+      transparent 32%
+    ),
+    linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 193, 7, 0.035) 48%,
+      transparent 72%
+    );
+
+  opacity: 0.7;
+}
+
+/* Animated shine */
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 70%;
+  height: 100%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.045),
+    transparent
+  );
+
+  transform: skewX(-18deg);
+  transition: left 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(255, 193, 7, 0.58);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(29, 34, 35, 0.98) 0%,
+      rgba(14, 18, 19, 0.98) 55%,
+      rgba(10, 13, 14, 1) 100%
+    );
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.30),
+    0 0 0 1px rgba(255, 193, 7, 0.05),
+    0 0 28px rgba(255, 193, 7, 0.08);
+}
+
+.card:hover::after {
+  left: 140%;
+}
+
+/* =========================================================
+   CARD TOP ROW
+   ========================================================= */
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.serviceIdentity {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  width: 66px;
+  height: 66px;
+
+  border: 1px solid rgba(255, 193, 7, 0.72);
+  border-radius: 15px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 193, 7, 0.13) 0%,
+      rgba(255, 193, 7, 0.045) 52%,
+      rgba(255, 193, 7, 0.015) 100%
+    );
+
+  color: var(--color-accent);
+
+  box-shadow:
+    inset 0 0 18px rgba(255, 193, 7, 0.04),
+    0 0 0 rgba(255, 193, 7, 0);
+
+  transition:
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease,
+    box-shadow 280ms ease,
+    background 280ms ease;
+}
+
+.icon::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+
+  border: 1px solid rgba(255, 193, 7, 0.16);
+  border-radius: 11px;
+
+  transition:
+    border-color 280ms ease,
+    transform 380ms ease;
+}
+
+.card:hover .icon {
+  transform: translateY(-2px) scale(1.035) rotate(-2deg);
+
+  border-color: rgba(255, 210, 31, 0.95);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 193, 7, 0.19) 0%,
+      rgba(255, 193, 7, 0.07) 52%,
+      rgba(255, 193, 7, 0.02) 100%
+    );
+
+  box-shadow:
+    0 0 22px rgba(255, 193, 7, 0.12),
+    inset 0 0 18px rgba(255, 193, 7, 0.06);
+}
+
+.card:hover .icon::before {
+  border-color: rgba(255, 193, 7, 0.35);
+  transform: scale(0.94);
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.title {
+  margin: 0;
+
+  color: #f5f5f5;
+
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+
+  text-wrap: balance;
+
+  transition:
+    color 240ms ease,
+    transform 240ms ease;
+}
+
+.card:hover .title {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid rgba(255, 193, 7, 0.18);
+  border-radius: 50%;
+
+  background: rgba(255, 193, 7, 0.10);
+  color: var(--color-accent);
+
+  transition:
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.card:hover .arrow {
+  transform: translate(3px, -3px) rotate(5deg);
+
+  border-color: rgba(255, 193, 7, 0.62);
+  background: rgba(255, 193, 7, 0.16);
+
+  box-shadow:
+    0 0 18px rgba(255, 193, 7, 0.13);
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.description {
+  max-width: 310px;
+  margin: 0;
+
+  color: rgba(221, 225, 226, 0.72);
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+
+  transition:
+    color 240ms ease,
+    transform 300ms ease;
+}
+
+.card:hover .description {
+  color: rgba(235, 238, 239, 0.84);
+  transform: translateX(1px);
+}
+
+/* =========================================================
+   BOTTOM ACCENT LINE
+   ========================================================= */
+
+.cardLine {
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+
+  width: 0;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    rgba(255, 193, 7, 0)
+  );
+
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.35);
+
+  transition: width 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .cardLine {
+  width: calc(100% - 40px);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    min-height: 185px;
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    align-items: flex-start;
+    margin-bottom: 26px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .header {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .viewAll {
+    margin-bottom: 0;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .cardTop {
+    gap: 10px;
+  }
+
+  .serviceIdentity {
+    gap: 13px;
+  }
+
+  .icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 13px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .description {
+    font-size: 13.5px;
+  }
+
+  .cardLine {
+    left: 18px;
+  }
+
+  .card:hover .cardLine {
+    width: calc(100% - 36px);
+  }
+}
+
+/* =========================================================
+   MOTION
+   ========================================================= */
+
+@keyframes ambientGlow {
+  from {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backgroundGlow,
+  .card,
+  .card::after,
+  .icon,
+  .icon::before,
+  .arrow,
+  .cardLine,
+  .viewAll,
+  .viewAll svg {
+    animation: none;
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}

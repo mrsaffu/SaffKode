@@ -1,0 +1,133 @@
+.eyebrow {
+  margin-top: var(--space-5);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.title {
+  font-size: clamp(2rem, 4.5vw, var(--font-size-5xl));
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+  margin-top: var(--space-3);
+}
+
+.highlight {
+  color: var(--color-accent);
+}
+
+.description {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  max-width: 68ch;
+  margin-top: var(--space-4);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.techRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+.statRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.statIcon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.statValue {
+  font-weight: var(--font-weight-bold);
+}
+
+.statLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-6);
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: start;
+}
+
+.overviewText {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-5);
+}
+
+.goalCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.goalIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-muted);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.goalLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.goalText {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.checklistGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+}
+
+.backLinkWrapper {
+  margin-top: var(--space-4);
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .overviewGrid,
+  .checklistGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}

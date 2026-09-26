@@ -1,0 +1,1052 @@
+/* =========================================================
+   SKILLS PREVIEW
+   ========================================================= */
+
+.skillsPreview {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+/* =========================================================
+   AMBIENT LIGHT
+   ========================================================= */
+
+.skillsPreview::before,
+.skillsPreview::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  opacity: 0.12;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 0, 0.9) 0%,
+    rgb(255, 225, 0) 24%,
+    rgb(255, 225, 0) 70%
+  );
+}
+
+.skillsPreview::before {
+  top: 40px;
+  left: 100px;
+}
+
+.skillsPreview::after {
+  right: 0;
+  bottom: 120px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: clamp(1.5rem, 3vw, 3.25rem);
+
+  margin-bottom: 1.15rem;
+}
+
+/* =========================================================
+   SECTION IDENTITY
+   ========================================================= */
+
+.sectionIdentity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  flex-shrink: 0;
+}
+
+.identityMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-accent);
+
+  filter: drop-shadow(0 0 6px rgba(255, 224, 0, 0.2));
+
+  animation: identityFloat 4s ease-in-out infinite;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+
+  font-size: 0.86rem;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+@keyframes identityFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* =========================================================
+   CATEGORY NAVIGATION
+   ========================================================= */
+
+.categoryNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.75rem;
+
+  min-width: 0;
+}
+
+.categoryButton {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 50px;
+
+  padding: 0 1.35rem;
+
+  border: 1px solid rgba(119, 137, 140, 0.18);
+
+  border-radius: 10px;
+
+  background: linear-gradient(180deg, rgba(18, 26, 27, 0.82), rgba(7, 13, 14, 0.82));
+
+  color: var(--color-text-secondary);
+
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 300ms ease,
+    background 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.categoryButton::before {
+  content: '';
+
+  position: absolute;
+  inset: 1px;
+
+  border-radius: inherit;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent);
+
+  pointer-events: none;
+}
+
+.categoryButton:hover {
+  color: var(--color-text-primary);
+
+  border-color: rgba(255, 224, 0, 0.28);
+
+  transform: translateY(-1px);
+}
+
+.categoryButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.categoryButtonActive {
+  color: #111;
+
+  background: linear-gradient(180deg, #ffe52b 0%, #ffd900 100%);
+
+  border-color: rgba(255, 224, 0, 0.9);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 224, 0, 0.08),
+    0 6px 20px rgba(255, 224, 0, 0.13);
+}
+
+.categoryButtonActive:hover {
+  color: #111;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 224, 0, 0.12),
+    0 8px 25px rgba(255, 224, 0, 0.18);
+}
+
+.categoryIcon {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   VIEW ALL
+   ========================================================= */
+
+.viewAll {
+  flex-shrink: 0;
+
+  color: var(--color-accent);
+
+  font-size: 0.88rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    transform 300ms ease,
+    color 300ms ease;
+}
+
+.viewAll:hover {
+  color: var(--color-accent);
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   SKILLS TRACK
+   ========================================================= */
+
+.skillsTrack {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+
+  gap: 0.95rem;
+
+  width: 100%;
+}
+
+/* =========================================================
+   SKILL ITEM
+   ========================================================= */
+
+.skillItem {
+  min-width: 0;
+  height: 100%;
+}
+
+/* =========================================================
+   SKILL CARD
+   ========================================================= */
+
+.skillCard {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 100px;
+
+  padding: 1rem 0.3rem 1rem;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(119, 137, 140, 0.17);
+
+  border-radius: 10px;
+
+  background: linear-gradient(145deg, rgba(14, 22, 23, 0.94), rgba(5, 11, 12, 0.96));
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    inset 0 -18px 35px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 350ms ease,
+    box-shadow 450ms ease,
+    background 450ms ease;
+}
+
+/* =========================================================
+   CARD TOP HIGHLIGHT
+   ========================================================= */
+
+.skillCard::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 12%;
+
+  width: 76%;
+  height: 1px;
+
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CARD GLOW
+   ========================================================= */
+
+.cardGlow {
+  position: absolute;
+
+  top: -65px;
+  left: -65px;
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle, rgba(255, 224, 0, 0.075), transparent 68%);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 450ms ease,
+    transform 500ms ease;
+}
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.skillCard:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(255, 224, 0, 0.3);
+
+  background: linear-gradient(145deg, rgba(18, 27, 28, 0.98), rgba(6, 12, 13, 0.98));
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.26),
+    0 0 25px rgba(255, 224, 0, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.skillCard:hover .cardGlow {
+  opacity: 1;
+
+  transform: translate(20px, 20px);
+}
+
+/* =========================================================
+   TECHNOLOGY LOGO CONTAINER
+   ========================================================= */
+
+.logoContainer {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 74px;
+  height: 74px;
+
+  margin-top: 0.1rem;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   TECHNOLOGY LOGO
+   ========================================================= */
+
+.technologyIcon {
+  width: 50px;
+  height: 50px;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 450ms ease;
+}
+
+.skillCard:hover .technologyIcon {
+  transform: translateY(-4px) scale(1.07);
+
+  filter: drop-shadow(0 7px 14px rgba(255, 224, 0, 0.09));
+}
+
+/* =========================================================
+   SKILL META
+   ========================================================= */
+
+.skillMeta {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 100%;
+
+  text-align: center;
+}
+
+.skillName {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.88rem;
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  letter-spacing: -0.01em;
+
+  word-break: break-word;
+}
+
+.skillCategory {
+  margin-top: 0.3rem;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.68rem;
+  font-weight: 500;
+
+  letter-spacing: 0.03em;
+}
+
+/* =========================================================
+   MORE SKILLS ACTION
+   ========================================================= */
+
+.skillsActions {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.7rem;
+
+  width: 100%;
+
+  margin-top: 1.5rem;
+}
+
+/* =========================================================
+   MORE SKILLS BUTTON
+   ========================================================= */
+
+.moreButton {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.55rem;
+
+  min-height: 44px;
+
+  padding: 0 1.35rem;
+
+  border: 1px solid rgba(255, 224, 0, 0.24);
+
+  border-radius: 9px;
+
+  background: linear-gradient(180deg, rgba(255, 224, 0, 0.075), rgba(255, 224, 0, 0.025));
+
+  color: var(--color-accent);
+
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  letter-spacing: 0.01em;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 4px 14px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 350ms ease,
+    color 300ms ease;
+}
+
+/* Top Glass Highlight */
+
+.moreButton::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 16%;
+
+  width: 68%;
+  height: 1px;
+
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+
+  pointer-events: none;
+}
+
+/* Bottom Accent Glow */
+
+.moreButton::after {
+  content: '';
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -45px;
+
+  width: 110px;
+  height: 80px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle, rgba(255, 224, 0, 0.14), transparent 70%);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 350ms ease;
+}
+
+/* Keep Content Above Decorative Layers */
+
+.moreButton span,
+.moreButton svg {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   MORE BUTTON HOVER
+   ========================================================= */
+
+.moreButton:hover {
+  transform: translateY(-2px);
+
+  color: #ffe52b;
+
+  border-color: rgba(255, 224, 0, 0.48);
+
+  background: linear-gradient(180deg, rgba(255, 224, 0, 0.12), rgba(255, 224, 0, 0.04));
+
+  box-shadow:
+    0 9px 25px rgba(0, 0, 0, 0.18),
+    0 0 22px rgba(255, 224, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+.moreButton:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   ARROW MOTION
+   ========================================================= */
+
+.moreButton svg {
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.moreButton:hover svg {
+  transform: translateY(3px);
+}
+
+/* =========================================================
+   PRESS
+   ========================================================= */
+
+.moreButton:active {
+  transform: translateY(0) scale(0.98);
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.14),
+    inset 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.moreButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   REMAINING COUNT
+   ========================================================= */
+
+.remainingSkills {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 28px;
+
+  padding: 0 0.65rem;
+
+  border: 1px solid rgba(119, 137, 140, 0.15);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: var(--color-text-muted);
+
+  font-size: 0.68rem;
+  font-weight: 500;
+
+  letter-spacing: 0.02em;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.emptyState {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.75rem;
+
+  min-height: 180px;
+
+  padding: 2rem;
+
+  border: 1px dashed rgba(119, 137, 140, 0.2);
+
+  border-radius: 12px;
+
+  color: var(--color-text-muted);
+
+  text-align: center;
+
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   MOBILE HINT
+   ========================================================= */
+
+.mobileHint {
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.35rem;
+
+  margin-top: 0.9rem;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.72rem;
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+[data-theme='light'] .skillsPreview::before,
+[data-theme='light'] .skillsPreview::after {
+  background: radial-gradient(
+    circle,
+    rgba(190, 160, 0, 0.09) 0%,
+    rgba(190, 160, 0, 0.025) 30%,
+    transparent 72%
+  );
+
+  opacity: 0.75;
+}
+
+[data-theme='light'] .categoryButton {
+  border-color: rgba(30, 40, 42, 0.12);
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(246, 248, 247, 0.98)
+  );
+
+  color: var(--color-text-secondary);
+
+  box-shadow: 0 2px 8px rgba(20, 30, 32, 0.035);
+}
+
+[data-theme='light'] .categoryButton:hover {
+  border-color: rgba(180, 155, 0, 0.34);
+
+  box-shadow: 0 5px 16px rgba(20, 30, 32, 0.07);
+}
+
+[data-theme='light'] .categoryButtonActive {
+  color: #181818;
+
+  background: linear-gradient(180deg, #ffe84a 0%, #ffd91a 100%);
+
+  border-color: rgba(185, 155, 0, 0.55);
+
+  box-shadow: 0 7px 20px rgba(170, 145, 0, 0.14);
+}
+
+[data-theme='light'] .skillCard {
+  border-color: rgba(30, 40, 42, 0.11);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.99),
+    rgba(247, 249, 248, 0.98)
+  );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 5px 18px rgba(20, 30, 32, 0.045);
+}
+
+[data-theme='light'] .skillCard:hover {
+  border-color: rgba(180, 155, 0, 0.36);
+
+  background: linear-gradient(145deg, #ffffff, #f8faf8);
+
+  box-shadow:
+    0 15px 32px rgba(20, 30, 32, 0.1),
+    0 0 20px rgba(190, 160, 0, 0.035);
+}
+
+[data-theme='light'] .skillCard::before {
+  background: linear-gradient(90deg, transparent, rgba(20, 30, 32, 0.08), transparent);
+}
+
+[data-theme='light'] .moreButton {
+  border-color: rgba(180, 155, 0, 0.3);
+
+  background: linear-gradient(180deg, rgba(255, 224, 0, 0.09), rgba(255, 224, 0, 0.035));
+
+  color: #806d00;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 4px 14px rgba(20, 30, 32, 0.055);
+}
+
+[data-theme='light'] .moreButton:hover {
+  border-color: rgba(180, 155, 0, 0.52);
+
+  background: linear-gradient(180deg, rgba(255, 224, 0, 0.15), rgba(255, 224, 0, 0.055));
+
+  color: #695900;
+
+  box-shadow:
+    0 8px 22px rgba(20, 30, 32, 0.09),
+    0 0 18px rgba(190, 160, 0, 0.06);
+}
+
+[data-theme='light'] .remainingSkills {
+  border-color: rgba(30, 40, 42, 0.11);
+
+  background: rgba(20, 30, 32, 0.025);
+
+  color: var(--color-text-muted);
+}
+
+/* =========================================================
+   LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .header {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+
+    row-gap: 1rem;
+  }
+
+  .categoryNavigation {
+    justify-content: flex-start;
+
+    overflow-x: auto;
+
+    padding-bottom: 3px;
+
+    scrollbar-width: none;
+  }
+
+  .categoryNavigation::-webkit-scrollbar {
+    display: none;
+  }
+
+  .viewAll {
+    grid-column: 2;
+
+    justify-self: start;
+  }
+
+  .skillsTrack {
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .header {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 1.15rem;
+  }
+
+  .categoryNavigation {
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+
+  .viewAll {
+    padding-left: 0;
+  }
+
+  .skillsTrack {
+    display: flex;
+
+    gap: 0.85rem;
+
+    overflow-x: auto;
+
+    overscroll-behavior-x: contain;
+
+    padding: 0.2rem 0.1rem 0.8rem;
+
+    scrollbar-width: thin;
+
+    scrollbar-color: var(--color-accent) transparent;
+  }
+
+  .skillItem {
+    flex: 0 0 145px;
+  }
+
+  .skillCard {
+    min-height: 165px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .header {
+    margin-bottom: 1rem;
+  }
+
+  .sectionIdentity {
+    gap: 0.6rem;
+  }
+
+  .identityMark {
+    width: 27px;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+  }
+
+  .categoryNavigation {
+    gap: 0.5rem;
+
+    overflow-x: auto;
+
+    width: calc(100% + 1rem);
+
+    margin-left: -0.5rem;
+
+    padding: 0.25rem 0.5rem 0.5rem;
+
+    scrollbar-width: none;
+  }
+
+  .categoryNavigation::-webkit-scrollbar {
+    display: none;
+  }
+
+  .categoryButton {
+    min-height: 43px;
+
+    padding: 0 1rem;
+
+    font-size: 0.78rem;
+  }
+
+  .viewAll {
+    font-size: 0.82rem;
+  }
+
+  .skillsTrack {
+    width: calc(100% + 1rem);
+
+    margin-left: -0.5rem;
+
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .skillItem {
+    flex-basis: 140px;
+  }
+
+  .skillCard {
+    min-height: 158px;
+
+    padding: 1.3rem 0.75rem 0.9rem;
+  }
+
+  .logoContainer {
+    width: 65px;
+    height: 65px;
+  }
+
+  .technologyIcon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .skillName {
+    font-size: 0.82rem;
+  }
+
+  .mobileHint {
+    display: flex;
+  }
+
+  .skillsActions {
+    margin-top: 1.25rem;
+
+    gap: 0.55rem;
+  }
+
+  .moreButton {
+    min-height: 42px;
+
+    padding: 0 1.15rem;
+
+    font-size: 0.78rem;
+  }
+
+  .remainingSkills {
+    min-height: 26px;
+
+    padding: 0 0.55rem;
+
+    font-size: 0.64rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .identityMark {
+    animation: none;
+  }
+
+  .categoryButton,
+  .skillCard,
+  .technologyIcon,
+  .cardGlow,
+  .viewAll,
+  .moreButton,
+  .moreButton svg,
+  .moreButton::after {
+    transition: none;
+  }
+
+  .categoryButton:hover,
+  .skillCard:hover,
+  .viewAll:hover,
+  .moreButton:hover {
+    transform: none;
+  }
+
+  .skillCard:hover .technologyIcon,
+  .moreButton:hover svg {
+    transform: none;
+  }
+}

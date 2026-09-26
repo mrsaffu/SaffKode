@@ -1,0 +1,23 @@
+.wrapper {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-16) 0;
+}
+
+.title {
+  font-size: var(--font-size-3xl);
+}
+
+.message {
+  color: var(--color-text-secondary);
+}

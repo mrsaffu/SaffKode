@@ -1,0 +1,451 @@
+.aboutPreview {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* =========================================================
+   AMBIENT BACKGROUND LIGHT
+   ========================================================= */
+
+.ambientGlowLeft,
+.ambientGlowRight {
+  /* border: 3px solid red; */
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: 520px;
+  height: 520px;
+  border-radius: 150%;
+  opacity: 0.12;
+  filter: blur(70px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 0, 0.9) 0%,
+    rgba(255, 224, 0, 0.3) 24%,
+    rgba(255, 224, 0, 0) 70%
+  );
+}
+
+.ambientGlowLeft {
+  top: -180px;
+  left: -190px;
+}
+
+.ambientGlowRight {
+  right: -190px;
+  bottom: -190px;
+}
+
+/*
+ * Thin decorative diagonal light streaks.
+ * These create the subtle premium lighting visible
+ * around the edges of the reference design.
+ */
+
+.aboutPreview::before,
+.aboutPreview::after {
+  /* border: 2px soid red; */
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: 130px;
+
+  height: 130px;
+  border-radius: 10%;
+  background: linear-gradient(90deg, transparent, rgba(255, 224, 0, 0.75), transparent);
+  box-shadow:
+    0 0 12px rgba(255, 224, 0, 0.45),
+    0 0 30px rgba(255, 224, 0, 0.15);
+}
+
+.aboutPreview::before {
+  top:180px;
+  left:60px;
+  transform: rotate(-25deg);
+}
+
+.aboutPreview::after {
+  right: 290px;
+  bottom: 120px;
+  transform: rotate(-25deg);
+}
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(3rem, 6vw, 6.5rem);
+  align-items: center;
+  min-height: 340px;
+}
+
+/* =========================================================
+   LEFT INTRO
+   ========================================================= */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/*
+ * SectionHeading already owns the shared heading structure.
+ * These overrides are intentionally scoped to AboutPreview.
+ */
+
+.heading {
+  margin-bottom: 0;
+  max-width: 620px;
+}
+
+/*
+ * Match the screenshot:
+ *
+ * — ABOUT ME
+ *
+ * Passionate Developer
+ * Who Loves to Build
+ *
+ * The second line is intentionally white rather than
+ * accent-colored for this particular design.
+ */
+
+.heading :global(.highlight) {
+  color: var(--color-text-primary);
+}
+
+/*
+ * The existing SectionHeading renders the title and
+ * highlight inline. Force the highlight onto a new line
+ * visually.
+ */
+
+.heading :global(.title) {
+  max-width: 620px;
+  font-size: clamp(2.15rem, 3.5vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+.heading :global(.highlight) {
+  display: block;
+  margin-top: 0.08em;
+}
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.summary {
+  max-width: 600px;
+  margin-top: 1.35rem;
+  color: var(--color-text-secondary);
+  font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+  line-height: 1.7;
+  letter-spacing: -0.005em;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta {
+  /* border: 4px solid red; */
+
+  margin-top: 1.35rem;
+}
+
+/* =========================================================
+   STRENGTH GRID
+   ========================================================= */
+
+.strengths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem;
+  width: 100%;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.strengthItem {
+  /* border: 4px solid red; */
+
+  min-width: 0;
+  height: 100%;
+}
+
+.strengthCard {
+  position: relative;
+  height: 100%;
+  min-height: 142px;
+  overflow: hidden;
+
+  /*
+   * Override the generic Card surface only for this
+   * specific visual treatment.
+   */
+  background: linear-gradient(145deg, rgba(17, 24, 25, 0.92), rgba(7, 12, 13, 0.88));
+
+  border: 1px solid rgba(126, 145, 148, 0.18);
+  border-radius: 12px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    inset 0 0 30px rgba(255, 255, 255, 0.012);
+
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 400ms ease,
+    box-shadow 500ms ease,
+    background 500ms ease;
+}
+
+/*
+ * Subtle top highlight.
+ */
+
+.strengthCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  opacity: 0.35;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+}
+
+/*
+ * Very subtle accent glow inside the card.
+ */
+
+.strengthCard::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: -75px;
+  left: -75px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 224, 0, 0.07), transparent 70%);
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.strengthCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 224, 0, 0.28);
+
+  background: linear-gradient(145deg, rgba(19, 27, 28, 0.98), rgba(7, 12, 13, 0.94));
+
+  box-shadow:
+    0 14px 38px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(255, 224, 0, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.strengthCard:hover::after {
+  opacity: 1;
+  transform: translate(18px, 18px);
+}
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.cardInner {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 1rem;
+
+  height: 100%;
+  align-items: start;
+}
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.iconWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 48px;
+  min-width: 48px;
+  padding-top: 1px;
+}
+
+.strengthIcon {
+  color: var(--color-accent);
+  filter: drop-shadow(0 0 7px rgba(255, 224, 0, 0.14));
+
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 450ms ease;
+}
+
+.strengthCard:hover .strengthIcon {
+  transform: translateY(-2px) scale(1.06);
+  filter: drop-shadow(0 0 12px rgba(255, 224, 0, 0.3));
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.cardContent {
+  min-width: 0;
+}
+
+.strengthTitle {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.strengthDescription {
+  margin: 0.45rem 0 0;
+  color: var(--color-text-secondary);
+  font-size: clamp(0.82rem, 1vw, 0.93rem);
+  line-height: 1.55;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 3rem;
+  }
+
+  .heading :global(.title) {
+    font-size: clamp(2rem, 4vw, 2.65rem);
+  }
+
+  .strengths {
+    gap: 0.9rem;
+  }
+
+  .strengthCard {
+    min-height: 135px;
+  }
+}
+
+/* =========================================================
+   MOBILE / TABLET STACK
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    min-height: auto;
+  }
+
+  .intro {
+    max-width: 700px;
+  }
+
+  .heading :global(.title) {
+    max-width: 680px;
+  }
+
+  .strengths {
+    max-width: 760px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .layout {
+    gap: 2.25rem;
+  }
+
+  .heading :global(.title) {
+    font-size: clamp(2rem, 10vw, 2.45rem);
+    line-height: 1.05;
+  }
+
+  .summary {
+    margin-top: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .cta {
+    margin-top: 1.15rem;
+  }
+
+  .strengths {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .strengthCard {
+    min-height: auto;
+  }
+
+  .cardInner {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+
+  .iconWrapper {
+    width: 44px;
+    min-width: 44px;
+  }
+
+  .strengthIcon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .strengthCard,
+  .strengthIcon,
+  .strengthCard::after {
+    transition: none;
+  }
+
+  .strengthCard:hover {
+    transform: none;
+  }
+
+  .strengthCard:hover .strengthIcon {
+    transform: none;
+  }
+}

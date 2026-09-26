@@ -1,0 +1,546 @@
+/* =========================================================
+   SERVICE OVERVIEW
+   Premium dark / glass / yellow accent system
+   ========================================================= */
+
+.section {
+  /* border: 2px solid red; */
+  position: relative;
+/* 
+  background:
+    radial-gradient(circle at 0% 18%, rgba(255, 225, 0, 0.045), transparent 27%),
+    radial-gradient(circle at 100% 82%, rgba(255, 225, 0, 0.035), transparent 25%),
+    #05090b; */
+
+  overflow: hidden;
+}
+
+/* Ambient edge lighting */
+.section::before,
+.section::after {
+  /* border: 2px solid red; */
+
+  
+  content: '';
+
+  position: absolute;
+
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  /* filter: blur(70px); */
+
+  opacity: 0.18;
+}
+
+.section::before {
+  left: 120px;
+  top: 67%;
+
+  background: rgba(255, 225, 2, 0.993);
+}
+
+.section::after {
+  right: 50px;
+  bottom: 79%;
+
+  background: rgb(255, 255, 0);
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.grid {
+  /* border: 2px solid red; */
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.96fr)
+    minmax(440px, 1.04fr);
+
+  gap: clamp(38px, 5vw, 72px);
+
+  align-items: stretch;
+}
+
+/* =========================================================
+   OVERVIEW
+   ========================================================= */
+
+.overview {
+  min-width: 0;
+
+  padding: 4px 0 10px;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+.headingIcon {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 225, 0, 0.35);
+
+  border-radius: 13px;
+
+  color: #ffe500;
+
+  background: linear-gradient(145deg, rgba(255, 225, 0, 0.11), rgba(255, 225, 0, 0.025));
+
+  box-shadow:
+    0 0 0 1px rgba(255, 225, 0, 0.025),
+    0 0 25px rgba(255, 225, 0, 0.06),
+    inset 0 0 18px rgba(255, 225, 0, 0.025);
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.headingIcon::after {
+  content: '';
+
+  position: absolute;
+  inset: -5px;
+
+  border: 1px solid rgba(255, 225, 0, 0.08);
+
+  border-radius: 17px;
+
+  opacity: 0;
+
+  transform: scale(0.94);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.sectionHeading:hover .headingIcon {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 225, 0, 0.68);
+
+  box-shadow:
+    0 0 28px rgba(255, 225, 0, 0.12),
+    inset 0 0 20px rgba(255, 225, 0, 0.05);
+}
+
+.sectionHeading:hover .headingIcon::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.headingContent {
+  min-width: 0;
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.eyebrow {
+  margin: 5px 0 8px;
+
+  color: #ffe500;
+
+  font-size: 13px;
+
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.title {
+  max-width: 470px;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(1.65rem, 2.25vw, 2.15rem);
+
+  line-height: 1.12;
+
+  letter-spacing: -0.025em;
+
+  font-weight: 750;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.descriptionGroup {
+  max-width: 550px;
+
+  padding-left: 76px;
+}
+
+.description {
+  margin: 0 0 16px;
+
+  color: rgba(255, 255, 255, 0.64);
+
+  font-size: 14px;
+
+  line-height: 1.72;
+
+  letter-spacing: -0.005em;
+}
+
+.description:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   WHY IT MATTERS
+   ========================================================= */
+
+
+.whyWrapper {
+  
+  min-width: 0;
+}
+
+.whyCard {
+  position: relative;
+
+  height: 100%;
+
+  padding: 25px 27px;
+
+  border: 1px solid rgba(255, 255, 255, 0.105);
+
+  border-radius: 10px;
+
+  background: linear-gradient(145deg, rgba(16, 25, 27, 0.68), rgba(8, 14, 16, 0.5));
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 18px 50px rgba(0, 0, 0, 0.12);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  overflow: hidden;
+
+  transition:
+    border-color 350ms ease,
+    box-shadow 350ms ease,
+    transform 350ms ease;
+}
+
+.whyCard::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  background: linear-gradient(180deg, transparent, rgba(255, 225, 0, 0.4), transparent);
+
+  opacity: 0.5;
+}
+
+.whyCard::after {
+  content: '';
+
+  position: absolute;
+
+  width: 240px;
+  height: 180px;
+
+  right: -130px;
+  top: -110px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 225, 0, 0.045);
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+.whyCard:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 225, 0, 0.2);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 22px 55px rgba(0, 0, 0, 0.18),
+    0 0 28px rgba(255, 225, 0, 0.025);
+}
+
+/* =========================================================
+   WHY HEADER
+   ========================================================= */
+
+.whyHeader {
+  margin-bottom: 18px;
+}
+
+.whyTitle {
+  color: #ffe500;
+
+  font-size: 13px;
+
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: 0.035em;
+}
+
+/* =========================================================
+   WHY LIST
+   ========================================================= */
+
+.whyList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+/* =========================================================
+   WHY ITEM
+   ========================================================= */
+
+.whyItem {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 4px 0;
+
+  transition: transform 280ms ease;
+}
+
+.whyItem:hover {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   WHY ICON
+   ========================================================= */
+
+.whyIcon {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 51px;
+  height: 51px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 225, 0, 0.22);
+
+  border-radius: 11px;
+
+  color: #ffe500;
+
+  background: linear-gradient(145deg, rgba(255, 225, 0, 0.105), rgba(255, 225, 0, 0.025));
+
+  box-shadow: inset 0 0 14px rgba(255, 225, 0, 0.025);
+
+  transition:
+    transform 280ms ease,
+    border-color 280ms ease,
+    background 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.whyIcon::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background: radial-gradient(circle, rgba(255, 225, 0, 0.12), transparent 68%);
+
+  opacity: 0;
+
+  transition: opacity 280ms ease;
+}
+
+.whyItem:hover .whyIcon {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 225, 0, 0.6);
+
+  background: linear-gradient(145deg, rgba(255, 225, 0, 0.15), rgba(255, 225, 0, 0.035));
+
+  box-shadow: 0 0 20px rgba(255, 225, 0, 0.07);
+}
+
+.whyItem:hover .whyIcon::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   WHY CONTENT
+   ========================================================= */
+
+.whyContent {
+  
+  min-width: 0;
+}
+
+.whyItemTitle {
+  margin: 0 0 4px;
+
+  color: rgba(255, 255, 255, 0.94);
+
+  font-size: 13px;
+
+  line-height: 1.35;
+
+  font-weight: 650;
+}
+
+.whyItemDescription {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 1fr;
+
+    gap: 42px;
+  }
+
+  .descriptionGroup {
+    max-width: 720px;
+  }
+
+  .whyCard {
+    max-width: 720px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .grid {
+    gap: 32px;
+  }
+
+  .sectionHeading {
+    gap: 14px;
+  }
+
+  .headingIcon {
+    width: 51px;
+    height: 51px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 1.55rem;
+  }
+
+  .descriptionGroup {
+    padding-left: 0;
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .whyCard {
+    padding: 21px 18px;
+  }
+
+  .whyIcon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .whyItem {
+    gap: 13px;
+  }
+
+  .whyItemTitle {
+    font-size: 12px;
+  }
+
+  .whyItemDescription {
+    font-size: 10.5px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .headingIcon,
+  .whyCard,
+  .whyItem,
+  .whyIcon {
+    transition: none;
+  }
+}

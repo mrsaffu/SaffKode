@@ -1,0 +1,886 @@
+.stackContainer {
+  position: relative;
+
+  width: calc(100% - 96px);
+
+  margin: 0 auto;
+
+  padding: 24px 20px;
+
+  overflow: visible;
+
+  border: 1px solid rgba(107, 123, 130, 0.28);
+
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      circle at 50% -80%,
+      rgba(255, 221, 0, 0.055),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(8, 15, 18, 0.94),
+      rgba(3, 8, 10, 0.98)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.24),
+    0 18px 45px rgba(0, 0, 0, 0.2);
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   TOP HIGHLIGHT
+========================================================= */
+
+.stackContainer::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 8%;
+  right: 8%;
+
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 221, 0, 0.26),
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   AMBIENT GLOW
+========================================================= */
+
+.ambientGlow {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 60%;
+  height: 120%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 221, 0, 0.035),
+    transparent 68%
+  );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+/* =========================================================
+   VIEWPORT
+========================================================= */
+
+.viewport {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+}
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.track {
+  display: flex;
+
+  width: 100%;
+
+  transition:
+    transform 650ms cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+
+  will-change: transform;
+}
+
+/* =========================================================
+   SLIDE
+========================================================= */
+
+.slide {
+  flex: 0 0 calc(100% / 6);
+
+  min-width: 0;
+
+  padding: 0 6px;
+}
+
+/* =========================================================
+   TECHNOLOGY CARD
+========================================================= */
+
+.techBadge {
+  position: relative;
+
+  display: flex !important;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  height: 126px;
+
+  min-height: 126px;
+
+  padding: 15px 8px 12px !important;
+
+  gap: 10px !important;
+
+  border-radius: 11px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(11, 20, 23, 0.88),
+      rgba(4, 10, 12, 0.94)
+    ) !important;
+
+  border: 1px solid
+    rgba(94, 111, 118, 0.28) !important;
+
+  color: rgba(239, 242, 243, 0.92) !important;
+
+  font-size: 13px !important;
+
+  font-weight: 600 !important;
+
+  line-height: 1.2 !important;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.028),
+    inset 0 0 0 1px
+      rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 320ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease,
+    color 250ms ease;
+}
+
+/* =========================================================
+   INTERNAL GLOW
+========================================================= */
+
+.techBadge::before {
+  content: '';
+
+  position: absolute;
+
+  top: -55px;
+  left: 50%;
+
+  width: 120px;
+  height: 120px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(255, 221, 0, 0.055);
+
+  filter: blur(28px);
+
+  opacity: 0;
+
+  transition: opacity 350ms ease;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   BOTTOM ACCENT
+========================================================= */
+
+.techBadge::after {
+  content: '';
+
+  position: absolute;
+
+  right: 16px;
+  bottom: 0;
+  left: 16px;
+
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 221, 0, 0.6),
+    transparent
+  );
+
+  transform: scaleX(0);
+
+  transform-origin: center;
+
+  transition:
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+/* =========================================================
+   REAL ICON
+========================================================= */
+
+/*
+ * IMPORTANT:
+ * Do NOT use:
+ *
+ * .techBadge :global(.icon)
+ *
+ * because `.icon` belongs to another CSS Module.
+ *
+ * We directly style the real image class generated
+ * inside TechnologyIcon instead.
+ */
+
+.iconImage {
+  position: relative;
+
+  z-index: 2;
+
+  display: block;
+
+  width: 46px;
+
+  height: 46px;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+
+  user-select: none;
+
+  filter:
+    drop-shadow(
+      0 3px 7px rgba(0, 0, 0, 0.28)
+    );
+
+  transition:
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    filter 300ms ease;
+}
+
+/* =========================================================
+   FALLBACK ICON
+========================================================= */
+
+.iconFallback {
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 8px);
+
+  align-items: end;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  width: 46px;
+  height: 46px;
+
+  padding-bottom: 10px;
+}
+
+.iconFallback span {
+  display: block;
+
+  width: 8px;
+
+  border-radius: 3px;
+
+  background: var(--color-accent);
+
+  box-shadow:
+    0 0 8px
+      rgba(255, 221, 0, 0.2);
+}
+
+.iconFallback span:nth-child(1) {
+  height: 15px;
+}
+
+.iconFallback span:nth-child(2) {
+  height: 27px;
+}
+
+.iconFallback span:nth-child(3) {
+  height: 20px;
+}
+
+/* =========================================================
+   GIT + GITHUB
+========================================================= */
+
+.combinedIcon {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  width: 50px;
+
+  height: 46px;
+}
+
+.combinedIcon .iconImage {
+  width: 28px;
+  height: 28px;
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.techBadge:hover {
+  transform: translateY(-5px) !important;
+
+  border-color:
+    rgba(255, 221, 0, 0.42) !important;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 221, 0, 0.065),
+      transparent 58%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(13, 23, 27, 0.96),
+      rgba(4, 10, 12, 0.98)
+    ) !important;
+
+  color: rgba(255, 255, 255, 1) !important;
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.045),
+    0 12px 26px
+      rgba(0, 0, 0, 0.28),
+    0 0 20px
+      rgba(255, 221, 0, 0.035);
+}
+
+.techBadge:hover::before {
+  opacity: 1;
+}
+
+.techBadge:hover::after {
+  transform: scaleX(1);
+}
+
+.techBadge:hover .iconImage {
+  transform:
+    translateY(-2px)
+    scale(1.08);
+
+  filter:
+    drop-shadow(
+      0 5px 9px
+        rgba(0, 0, 0, 0.3)
+    )
+    drop-shadow(
+      0 0 7px
+        rgba(255, 221, 0, 0.1)
+    );
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigationButton {
+  position: absolute;
+
+  top: 50%;
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  transform: translateY(-50%);
+
+  color: rgba(235, 239, 240, 0.86);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 23, 26, 0.96),
+      rgba(5, 10, 12, 0.98)
+    );
+
+  border: 1px solid
+    rgba(116, 130, 136, 0.35);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 8px 20px
+      rgba(0, 0, 0, 0.32),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.035);
+
+  cursor: pointer;
+
+  transition:
+    transform 280ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+.navigationButton:hover:not(:disabled) {
+  color: #111;
+
+  background: var(--color-accent);
+
+  border-color: var(--color-accent);
+
+  box-shadow:
+    0 8px 22px
+      rgba(0, 0, 0, 0.32),
+    0 0 18px
+      rgba(255, 221, 0, 0.16);
+}
+
+.previousButton:hover:not(:disabled) {
+  transform:
+    translate(-2px, -50%);
+}
+
+.nextButton:hover:not(:disabled) {
+  transform:
+    translate(2px, -50%);
+}
+
+.navigationButton:disabled {
+  opacity: 0.35;
+
+  cursor: not-allowed;
+}
+
+.previousButton {
+  left: -70px;
+}
+
+.nextButton {
+  right: -70px;
+}
+
+.navigationButton:focus-visible {
+  outline: 2px solid
+    var(--color-accent);
+
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.controls {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  width: calc(100% - 96px);
+
+  margin: 18px auto 0;
+}
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.paginationDot {
+  width: 24px;
+  height: 4px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 99px;
+
+  background:
+    rgba(119, 130, 135, 0.34);
+
+  cursor: pointer;
+
+  transition:
+    width 320ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    background 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.paginationDot:hover {
+  background:
+    rgba(255, 221, 0, 0.5);
+}
+
+.paginationDotActive {
+  width: 34px;
+
+  background:
+    var(--color-accent);
+
+  box-shadow:
+    0 0 10px
+      rgba(255, 221, 0, 0.16);
+}
+
+/* =========================================================
+   CONTROL META
+========================================================= */
+
+.controlMeta {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  color:
+    rgba(156, 166, 170, 0.76);
+
+  font-size: 12px;
+
+  letter-spacing: 0.03em;
+}
+
+.autoScrollButton {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  font: inherit;
+
+  cursor: pointer;
+
+  transition:
+    color 200ms ease;
+}
+
+.autoScrollButton:hover {
+  color:
+    rgba(240, 243, 244, 0.96);
+}
+
+.controlIcon {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  border: 1px solid
+    rgba(145, 155, 159, 0.38);
+
+  border-radius: 50%;
+
+  color:
+    rgba(222, 227, 229, 0.85);
+}
+
+.controlDivider {
+  width: 1px;
+  height: 22px;
+
+  background:
+    rgba(117, 129, 134, 0.24);
+}
+
+.statusText {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .stackContainer,
+  .controls {
+    width: calc(100% - 76px);
+  }
+
+  .previousButton {
+    left: -58px;
+  }
+
+  .nextButton {
+    right: -58px;
+  }
+}
+
+/* =========================================================
+   TABLET - 4 CARDS
+========================================================= */
+
+@media (max-width: 900px) {
+  .slide {
+    flex-basis: 25%;
+  }
+
+  .stackContainer {
+    padding: 20px 16px;
+  }
+
+  .techBadge {
+    height: 118px;
+
+    min-height: 118px;
+  }
+
+  .iconImage {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* =========================================================
+   MOBILE - 2 CARDS
+========================================================= */
+
+@media (max-width: 600px) {
+  .stackContainer {
+    width: 100%;
+
+    padding: 15px 10px;
+
+    border-radius: 14px;
+  }
+
+  .slide {
+    flex-basis: 50%;
+
+    padding: 0 5px;
+  }
+
+  .techBadge {
+    height: 112px;
+
+    min-height: 112px;
+
+    padding:
+      12px 6px 10px !important;
+
+    gap: 8px !important;
+
+    font-size: 12px !important;
+  }
+
+  .iconImage {
+    width: 38px;
+    height: 38px;
+  }
+
+  .combinedIcon {
+    width: 44px;
+    height: 40px;
+  }
+
+  .combinedIcon .iconImage {
+    width: 23px;
+    height: 23px;
+  }
+
+  .navigationButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .previousButton {
+    left: 2px;
+  }
+
+  .nextButton {
+    right: 2px;
+  }
+
+  .controls {
+    width: 100%;
+
+    margin-top: 14px;
+  }
+
+  .paginationDot {
+    width: 17px;
+  }
+
+  .paginationDotActive {
+    width: 27px;
+  }
+
+  .controlMeta {
+    gap: 8px;
+
+    font-size: 10px;
+  }
+
+  .controlDivider,
+  .statusText {
+    display: none;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .techBadge {
+    height: 104px;
+
+    min-height: 104px;
+  }
+
+  .iconImage {
+    width: 34px;
+    height: 34px;
+  }
+
+  .navigationButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navigationButton svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .techBadge,
+  .techBadge::before,
+  .techBadge::after,
+  .iconImage,
+  .navigationButton,
+  .paginationDot {
+    transition: none;
+  }
+
+  .techBadge:hover {
+    transform: none !important;
+  }
+
+  .techBadge:hover .iconImage {
+    transform: none;
+  }
+}

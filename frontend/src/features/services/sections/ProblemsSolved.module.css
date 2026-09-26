@@ -1,0 +1,498 @@
+/* =========================================================
+   PROBLEMS I SOLVE
+   ========================================================= */
+
+.border {
+  border-top: 1px solid rgba(255, 255, 255, 0.105);
+
+  position: relative;
+  top: -48px;
+}
+.borderbtm{
+
+  border-top: 1px solid rgba(255, 255, 255, 0.105);
+  position: relative;
+
+  bottom: -48px;
+
+}
+.section {
+  /* border: 1px solid red; */
+
+  position: relative;
+  /* 
+  background:
+    radial-gradient(circle at 0% 50%, rgba(255, 225, 0, 0.035), transparent 28%), #05090b; */
+
+  /* border-top: 1px solid rgba(255, 255, 255, 0.105); */
+
+  overflow: hidden;
+}
+
+/*
+   Premium yellow edge glow
+ */
+
+.section::before {
+  content: '';
+
+  position: absolute;
+
+  left: 510px;
+  bottom: 180px;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  background: rgba(34, 15, 0, 0.893);
+
+  /* filter: blur(80px); */
+
+  pointer-events: none;
+}
+
+.section::after {
+  content: '';
+
+  position: absolute;
+
+  right: 60px;
+  top: 60%;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  background: rgba(34, 15, 0, 0.893);
+
+  /* filter: blur(75px); */
+
+  pointer-events: none;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(290px, 0.76fr)
+    minmax(0, 1.7fr);
+
+  gap: clamp(35px, 5vw, 70px);
+
+  align-items: center;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  min-width: 0;
+}
+
+.headerTop {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 15px;
+}
+
+/* =========================================================
+   MAIN YELLOW ICON
+   ========================================================= */
+
+.headerIcon {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 225, 0, 0.34);
+
+  border-radius: 12px;
+
+  color: #ffe500;
+
+  background: linear-gradient(145deg, rgba(255, 225, 0, 0.11), rgba(255, 225, 0, 0.02));
+
+  box-shadow:
+    0 0 25px rgba(255, 225, 0, 0.055),
+    inset 0 0 18px rgba(255, 225, 0, 0.025);
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.headerIcon::before {
+  content: '';
+
+  position: absolute;
+  inset: -5px;
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(255, 225, 0, 0.08);
+
+  opacity: 0;
+
+  transform: scale(0.94);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.header:hover .headerIcon {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 225, 0, 0.68);
+
+  box-shadow:
+    0 0 30px rgba(255, 225, 0, 0.11),
+    inset 0 0 20px rgba(255, 225, 0, 0.05);
+}
+
+.header:hover .headerIcon::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.eyebrow {
+  margin: 5px 0 9px;
+
+  color: #ffe500;
+
+  font-size: 12px;
+
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: 0.045em;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.title {
+  margin: 0;
+
+  max-width: 350px;
+
+  color: #ffffff;
+
+  font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+
+  line-height: 1.12;
+
+  letter-spacing: -0.025em;
+
+  font-weight: 750;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.description {
+  max-width: 355px;
+
+  margin: 19px 0 0 73px;
+
+  color: rgba(255, 255, 255, 0.56);
+
+  font-size: 12px;
+
+  line-height: 1.65;
+}
+
+/* =========================================================
+   PROBLEM GRID
+   ========================================================= */
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 8px;
+}
+
+/* =========================================================
+   CARD WRAPPER
+   ========================================================= */
+
+.cardWrapper {
+  min-width: 0;
+}
+
+/* =========================================================
+   PROBLEM CARD
+   ========================================================= */
+
+.card {
+  position: relative;
+
+  min-height: 59px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 9px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.095);
+
+  border-radius: 8px;
+
+  background: linear-gradient(145deg, rgba(17, 25, 27, 0.66), rgba(7, 13, 15, 0.48));
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+
+  overflow: hidden;
+
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease,
+    background 280ms ease,
+    box-shadow 280ms ease;
+}
+
+/*
+   Subtle red ambient glow inside problem cards
+ */
+
+.card::after {
+  content: '';
+
+  position: absolute;
+
+  width: 90px;
+  height: 90px;
+
+  left: -50px;
+  top: -45px;
+
+  border-radius: 50%;
+
+  background: rgba(239, 68, 68, 0.045);
+
+  filter: blur(22px);
+
+  opacity: 0;
+
+  transition: opacity 280ms ease;
+
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(255, 255, 255, 0.17);
+
+  background: linear-gradient(145deg, rgba(21, 30, 32, 0.76), rgba(8, 14, 16, 0.6));
+
+  box-shadow:
+    0 13px 28px rgba(0, 0, 0, 0.17),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   PROBLEM ICON
+   ========================================================= */
+
+.icon {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(239, 68, 68, 0.22);
+
+  border-radius: 9px;
+
+  color: #ef4444;
+
+  background: linear-gradient(145deg, rgba(239, 68, 68, 0.105), rgba(239, 68, 68, 0.025));
+
+  box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.025);
+
+  transition:
+    transform 280ms ease,
+    border-color 280ms ease,
+    box-shadow 280ms ease,
+    background 280ms ease;
+}
+
+.card:hover .icon {
+  transform: scale(1.06);
+
+  border-color: rgba(239, 68, 68, 0.52);
+
+  background: linear-gradient(145deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.035));
+
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.07);
+}
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.cardContent {
+  min-width: 0;
+}
+
+.cardTitle {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 11px;
+
+  line-height: 1.35;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.cardDescription {
+  display: none;
+}
+
+/* =========================================================
+   LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+  }
+
+  .description {
+    max-width: 600px;
+  }
+
+  .grid {
+    max-width: 850px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+  }
+
+  .description {
+    margin-left: 0;
+  }
+
+  .title {
+    max-width: 500px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .headerTop {
+    gap: 13px;
+  }
+
+  .headerIcon {
+    width: 51px;
+    height: 51px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    margin-top: 16px;
+
+    font-size: 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 58px;
+  }
+
+  .cardTitle {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .headerIcon,
+  .card,
+  .icon {
+    transition: none;
+  }
+}

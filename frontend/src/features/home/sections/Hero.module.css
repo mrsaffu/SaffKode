@@ -1,0 +1,721 @@
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  border: 2px solid red;
+  --hero-yellow: #ffe500;
+  --hero-yellow-soft: rgba(255, 229, 0, 0.16);
+  --hero-white: #ffffff;
+  --hero-muted: rgba(255, 255, 255, 0.72);
+  --hero-border: rgba(255, 255, 255, 0.14);
+
+  position: relative;
+  isolation: isolate;
+
+  min-height: 695px;
+
+  padding-top: 0;
+  padding-bottom: 0;
+
+  overflow: hidden;
+
+  background: #030608;
+
+  border: 0;
+
+  color: var(--hero-white);
+  border-bottom: 2px solid var(--hero-border);
+}
+
+/* =========================================================
+   BACKGROUND IMAGE
+   ========================================================= */
+
+.background {
+  /* displa */
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  background-image: var(--hero-bg);
+  /* height: 600px; */
+  background-repeat: no-repeat;
+
+  background-size: cover;
+
+  /*
+   * Desktop composition:
+   *
+   * Left  = dark negative space for content
+   * Right = person / laptop / books / lamp
+   */
+  background-position: center center;
+
+  transform: scale(1.015);
+
+  will-change: transform, opacity;
+
+  animation: heroBackgroundIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mobileImage {
+  /* border: 2px solid red; */
+  display: none;
+  height: 100%;
+  width: 100%;
+  transform: scale(1.4);
+  transform-origin: left;
+
+  /* height:500px */
+}
+/* =========================================================
+   CONTENT READABILITY OVERLAY
+   ========================================================= */
+
+.overlay {
+  /* border:2px solid red; */
+  position: absolute;
+  z-index: 1;
+
+  inset: 0;
+
+  /*
+   * Darker on the left where the typography sits.
+   * Gradually becomes transparent toward the subject.
+   */
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 5, 6, 0.82) 0%,
+      rgba(2, 5, 6, 0.68) 22%,
+      rgba(2, 5, 6, 0.35) 43%,
+      rgba(2, 5, 6, 0.05) 68%,
+      rgba(2, 5, 6, 0.08) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.15) 0%,
+      transparent 25%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CINEMATIC VIGNETTE
+   ========================================================= */
+
+.vignette {
+  position: absolute;
+  z-index: 1;
+
+  inset: 0;
+
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgba(0, 0, 0, 0.18) 72%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.content {
+  position: relative;
+  z-index: 2;
+
+  min-height: 600px;
+
+  display: flex;
+  align-items: center;
+
+  /* padding-top: clamp(72px, 9vw, 105px); */
+  /* padding-bottom: 42px; */
+}
+
+/* =========================================================
+   CONTENT COLUMN
+   ========================================================= */
+
+.copy {
+  /* border:2px solid red; */
+  width: min(100%, 650px);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 0;
+
+  /* padding-left: clamp(8px, 3.8vw, 58px); */
+}
+
+/* =========================================================
+   AVAILABILITY BADGE
+   ========================================================= */
+
+.badgeWrap {
+  /* border:2px solid red; */
+
+  margin-bottom: 20px;
+
+  animation: badgeFloat 5s ease-in-out infinite;
+}
+
+.badgeWrap :global(*) {
+  box-sizing: border-box;
+}
+
+/* Green availability indicator */
+
+.statusDot {
+  display: inline-block;
+
+  width: 9px;
+  height: 9px;
+
+  margin-right: 7px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: #25d366;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 211, 102, 0.12),
+    0 0 12px rgba(37, 211, 102, 0.7);
+
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* =========================================================
+   HEADLINE
+   ========================================================= */
+
+.headline {
+  margin: 0;
+
+  max-width: 620px;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: clamp(2.75rem, 4.25vw, 4rem);
+
+  line-height: 0.98;
+
+  letter-spacing: -0.045em;
+
+  font-weight: 800;
+
+  color: #ffffff;
+
+  text-wrap: balance;
+}
+
+/* Individual heading rows */
+
+.headingLine {
+  display: block;
+}
+
+/* Yellow accent line */
+
+.highlight {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--hero-yellow);
+
+  text-shadow: 0 0 22px rgba(255, 229, 0, 0.08);
+
+  animation: highlightGlow 4s ease-in-out infinite;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.subhead {
+  max-width: 610px;
+
+  margin: 24px 0 0;
+
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+
+  line-height: 1.55;
+
+  letter-spacing: -0.012em;
+
+  color: var(--hero-muted);
+
+  text-wrap: pretty;
+}
+
+/* =========================================================
+   CTA ACTIONS
+   ========================================================= */
+
+.actions {
+  /* border: 2px solid red; */
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 16px;
+
+  margin-top: 27px;
+}
+
+/* Primary CTA */
+
+.actions > *:first-child {
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    filter 240ms ease;
+}
+
+.actions > *:first-child:hover {
+  transform: translateY(-3px);
+
+  filter: brightness(1.04);
+
+  box-shadow: 0 10px 30px rgba(255, 229, 0, 0.2);
+}
+
+/* Secondary CTA */
+
+.actions > *:last-child {
+  transition:
+    transform 240ms ease,
+    background-color 240ms ease,
+    border-color 240ms ease;
+}
+
+.actions > *:last-child:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   SOCIAL LINKS
+   ========================================================= */
+
+.socials {
+  /* border:2px solid red; */
+
+  margin-top: 21px;
+}
+
+/*
+ * Works with the existing SocialLinks component.
+ */
+.socials :global(a) {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.socials :global(a:hover) {
+  transform: translateY(-3px);
+
+  border-color: rgba(255, 229, 0, 0.55);
+
+  background-color: rgba(255, 229, 0, 0.06);
+
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.statGrid {
+  /* border:2px solid red;  */
+  position: relative;
+  z-index: 3;
+
+  width: calc(60% - clamp(18px, 5.6vw, 50px));
+
+  /* margin-left: clamp(8px, 3.8vw, 58px); */
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent);
+}
+
+/* Individual stat */
+
+.statItem {
+  min-width: 0;
+
+  padding: 19px 26px 18px 28px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.11);
+}
+
+.statItem:first-child {
+  padding-left: 28px;
+}
+
+.statItem:last-child {
+  border-right: 0;
+}
+
+/* Stat content */
+
+.stat {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+/* Number */
+
+.statValue {
+  font-size: clamp(1.65rem, 2.3vw, 2.15rem);
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: -0.035em;
+
+  color: var(--hero-yellow);
+
+  text-shadow: 0 0 18px rgba(255, 229, 0, 0.08);
+}
+
+/* Label */
+
+.statLabel {
+  font-size: 0.82rem;
+
+  line-height: 1.25;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  letter-spacing: -0.005em;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+/* Background entrance */
+
+@keyframes heroBackgroundIn {
+  from {
+    opacity: 0;
+
+    transform: scale(1.045);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1.015);
+  }
+}
+
+/* Small badge movement */
+
+@keyframes badgeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Availability pulse */
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 3px rgba(37, 211, 102, 0.12),
+      0 0 12px rgba(37, 211, 102, 0.65);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 5px rgba(37, 211, 102, 0.04),
+      0 0 18px rgba(37, 211, 102, 0.9);
+  }
+}
+
+/* Yellow headline glow */
+
+@keyframes highlightGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 18px rgba(255, 229, 0, 0.05);
+  }
+
+  50% {
+    text-shadow: 0 0 28px rgba(255, 229, 0, 0.12);
+  }
+}
+
+/* =========================================================
+   LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .hero {
+    min-height: 650px;
+  }
+
+  .background {
+    background-position: 58% center;
+  }
+
+  .copy {
+    width: min(100%, 590px);
+  }
+
+  .headline {
+    font-size: clamp(2.6rem, 5vw, 3.5rem);
+  }
+
+  .statGrid {
+    width: calc(100% - 40px);
+
+    margin-left: 20px;
+  }
+
+  .statItem {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 760px;
+  }
+
+  .background {
+    background-position: 68% center;
+    transform: scale(1.03);
+  }
+
+  .overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(2, 5, 6, 0.9) 0%,
+        rgba(2, 5, 6, 0.76) 45%,
+        rgba(2, 5, 6, 0.35) 100%
+      ),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.42));
+  }
+
+  .content {
+    min-height: 600px;
+
+    align-items: flex-start;
+
+    padding-top: 85px;
+  }
+
+  .copy {
+    width: 100%;
+
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .headline {
+    max-width: 560px;
+
+    font-size: clamp(2.45rem, 7.4vw, 3.5rem);
+  }
+
+  .subhead {
+    max-width: 560px;
+
+    font-size: 1rem;
+  }
+
+  .statGrid {
+    width: calc(100% - 44px);
+
+    margin-left: 22px;
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statItem:nth-child(2) {
+    border-right: 0;
+  }
+
+  .statItem:nth-child(1),
+  .statItem:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media (max-width: 560px) {
+  .hero {
+    /* border: 2px solid red; */
+    min-height: 0;
+    height: auto;
+
+    overflow: hidden;
+
+    background: #030608;
+    padding: 0px;
+    padding-bottom: 10px;
+  }
+
+  /* Hide desktop background ONLY on mobile */
+  .background {
+    display: none;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .vignette {
+    display: none;
+  }
+
+  /* =======================================================
+     CONTENT
+     ======================================================= */
+
+  .content {
+    /* border: 2px solid red; */
+
+    min-height: 0;
+
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  .copy {
+    /* border: 2px solid red; */
+    width: 100%;
+
+    padding-inline: 0px;
+    padding-top: 20px;
+  }
+
+  /* =======================================================
+     MOBILE IMAGE
+     ======================================================= */
+
+  .mobileImage {
+    display: block;
+
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+
+    /* margin-top: 10px; */
+
+    overflow: hidden;
+
+    line-height: 0;
+  }
+
+  .mobileImage img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-width: 100%;
+
+    object-fit: contain;
+    object-position: center bottom;
+
+    vertical-align: bottom;
+  }
+
+  /* =======================================================
+     STATISTICS
+     ======================================================= */
+
+  .statGrid {
+    /* border: 2px solid red; */
+
+    position: relative;
+    z-index: 3;
+
+    width: calc(100% - 0px);
+
+    margin: 10px 0px 0px 0px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: rgba(3, 8, 10, 0.94);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+@media (max-width: 380px) {
+  .content {
+    padding-top: 25px;
+  }
+
+  .copy {
+    padding-inline: 18px;
+  }
+
+  .mobileImage {
+    margin-top: 8px;
+  }
+
+  .statGrid {
+    width: calc(100% - 36px);
+
+    margin-inline: 18px;
+  }
+}

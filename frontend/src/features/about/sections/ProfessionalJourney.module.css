@@ -1,0 +1,754 @@
+/* =========================================================
+   PROFESSIONAL JOURNEY
+   ========================================================= */
+
+.section {
+  /* border: 2px solid red; */
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(circle at 75% 15%, rgba(255, 229, 0, 0.035), transparent 28%), #080a0b;
+
+  /* border-top: 1px solid rgba(255, 255, 255, 0.08); */
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+  /* border: 2px solid red; */
+
+  width: min(calc(100% - 80px), 1360px);
+
+  margin-inline: auto;
+
+  padding: 30px 0 34px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  /* border: 2px solid red; */
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  min-height: 92px;
+}
+
+.headingBlock {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 8px;
+
+  color: #ffe500;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.eyebrowLine {
+  width: 25px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: #ffe500;
+
+  box-shadow: 0 0 9px rgba(255, 229, 0, 0.25);
+}
+
+.heading {
+  /* border: 2px solid red; */
+
+  margin: 0;
+
+  color: #f5f6f7;
+
+  font-size: clamp(30px, 3vw, 38px);
+
+  font-weight: 700;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.035em;
+}
+
+.heading span {
+  color: #ffe500;
+
+  text-shadow: 0 0 22px rgba(255, 229, 0, 0.1);
+}
+
+/* =========================================================
+   HEADER RIGHT
+   ========================================================= */
+
+.headerRight {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 55px;
+}
+
+.handwritten {
+  margin: 2px 0 0;
+
+  color: #ffe500;
+
+  font-family: 'Segoe Print', 'Bradley Hand', cursive;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  line-height: 1.15;
+
+  font-style: italic;
+
+  transform: rotate(-5deg);
+
+  opacity: 0.95;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navigation {
+  display: flex;
+
+  align-items: center;
+
+  gap: 32px;
+
+  padding-top: 4px;
+}
+
+.navButton {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.012);
+
+  color: rgba(230, 233, 236, 0.72);
+
+  cursor: pointer;
+
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 250ms ease,
+    border-color 250ms ease,
+    background 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.navButton:hover {
+  transform: translateY(-2px);
+
+  color: #ffffff;
+
+  border-color: rgba(255, 255, 255, 0.42);
+
+  background: rgba(255, 255, 255, 0.035);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   ACTIVE RIGHT BUTTON
+   ========================================================= */
+
+.navButtonActive {
+  
+  color: #ffe500;
+
+  border-color: rgba(255, 229, 0, 0.65);
+
+  background: rgba(255, 229, 0, 0.025);
+}
+
+.navButtonActive:hover {
+  color: #080a0b;
+
+  background: #ffe500;
+
+  border-color: #ffe500;
+
+  box-shadow: 0 0 22px rgba(255, 229, 0, 0.18);
+}
+
+/* =========================================================
+   DISABLED NAVIGATION
+   ========================================================= */
+
+.navButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.38;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+.navButton:disabled:hover {
+  transform: none;
+
+  color: rgba(230, 233, 236, 0.72);
+
+  background: rgba(255, 255, 255, 0.012);
+
+  border-color: rgba(255, 255, 255, 0.2);
+
+  box-shadow: none;
+}
+
+.navButtonActive:disabled {
+  color: rgba(255, 229, 0, 0.38);
+
+  border-color: rgba(255, 229, 0, 0.25);
+
+  background: rgba(255, 229, 0, 0.012);
+}
+
+.navButtonActive:disabled:hover {
+  color: rgba(255, 229, 0, 0.38);
+
+  border-color: rgba(255, 229, 0, 0.25);
+
+  background: rgba(255, 229, 0, 0.012);
+}
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.timeline {
+  /* border: 2px solid red; */
+
+  position: relative;
+
+  margin-top: 30px;
+}
+
+/* =========================================================
+   TIMELINE LINE
+   ========================================================= */
+
+.timelineLine {
+  /* border: 2px solid red; */
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.16)
+  );
+}
+
+/* =========================================================
+   SLIDER VIEWPORT
+   ========================================================= */
+
+.sliderViewport {
+  /* border: 2px solid red; */
+
+  position: relative;
+
+  width: 100%;
+
+  /* overflow: hidden; */
+}
+
+/* =========================================================
+   SLIDER TRACK
+   ========================================================= */
+
+.sliderTrack {
+  width: 100%;
+
+  transform: translateX(calc(var(--slider-offset) * -1));
+
+  transition: transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  will-change: transform;
+  /* overflow: hidden; */
+
+}
+
+/* =========================================================
+   JOURNEY GRID / SLIDER ROW
+   ========================================================= */
+
+.journeyGrid {
+  /* border: 2px solid red; */
+
+  position: relative;
+
+  display: flex;
+
+  gap: 44px;
+
+  padding-top: 27px;
+
+  width: 100%;
+  /* padding-right: 30px; */
+  
+}
+
+/* =========================================================
+   JOURNEY ITEM
+   ========================================================= */
+
+.journeyItem {
+  
+  position: relative;
+
+  min-width: 0;
+
+  flex: 0 0 calc((100% - 96px) / 4);
+}
+
+/* =========================================================
+   TIMELINE NODE
+   ========================================================= */
+
+.timelineNode {
+  /* border: 2px solid red; */
+
+  position: absolute;
+
+  top: -53px;
+
+  left: 14px;
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffe500;
+
+  background: #080a0b;
+
+  /* border: 1px solid rgba(255, 229, 0, 0.5); */
+
+  box-shadow:
+    0 0 0 5px #080a0b,
+    0 0 0 6px rgba(255, 255, 255, 0.08);
+
+  z-index: 2;
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.journeyItem:hover .timelineNode {
+  transform: scale(1.08);
+
+  border-color: #ffe500;
+
+  background: rgba(255, 229, 0, 0.055);
+
+  box-shadow:
+    0 0 0 5px #080a0b,
+    0 0 0 6px rgba(255, 229, 0, 0.18),
+    0 0 24px rgba(255, 229, 0, 0.1);
+}
+
+.timelineNodeActive {
+  border-color: #ffe500;
+
+  box-shadow:
+    0 0 0 5px #080a0b,
+    0 0 0 6px rgba(255, 229, 0, 0.16);
+}
+
+/* =========================================================
+   JOURNEY CARD
+   ========================================================= */
+
+.card {
+  /* border: 2px solid red; */
+  position: relative;
+
+  width: 100%;
+
+  height: 142px;
+
+  padding: 15px 17px;
+
+  /* border: 1px solid rgba(255, 255, 255, 0.15); */
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.008)
+  );
+
+  overflow: hidden;
+
+  transition:
+    transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.card::after {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.035),
+    transparent
+  );
+
+  transform: skewX(-18deg);
+
+  transition: left 600ms ease;
+
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(255, 229, 0, 0.28);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 229, 0, 0.045),
+    rgba(255, 255, 255, 0.008)
+  );
+
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.25),
+    0 0 25px rgba(255, 229, 0, 0.035);
+}
+
+.card:hover::after {
+  left: 140%;
+}
+
+.cardActive {
+  border-color: rgba(255, 229, 0, 0.23);
+}
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.cardDate {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 6px;
+
+  color: #ffe500;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.verifyBadge {
+  padding: 3px 6px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 4px;
+
+  color: rgba(220, 223, 226, 0.72);
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.05em;
+}
+
+.cardTitle {
+  margin: 0 0 4px;
+
+  color: #f5f6f7;
+
+  font-size: 15px;
+
+  font-weight: 650;
+
+  line-height: 1.2;
+}
+
+.cardSubtitle {
+  margin: 0;
+
+  color: rgba(211, 215, 219, 0.72);
+
+  font-size: 12px;
+
+  line-height: 1.25;
+}
+
+.cardDescription {
+  margin: 9px 0 0;
+
+  color: rgba(205, 209, 213, 0.67);
+
+  font-size: 11px;
+
+  line-height: 1.38;
+}
+
+/* =========================================================
+   LARGE LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .container {
+    width: min(calc(100% - 56px), 1080px);
+  }
+
+  .journeyGrid {
+    gap: 18px;
+  }
+
+  .journeyItem {
+    flex: 0 0 calc((100% - 54px) / 4);
+  }
+
+  .headerRight {
+    gap: 30px;
+  }
+
+  .handwritten {
+    font-size: 14px;
+  }
+
+  .card {
+    height: 145px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .container {
+    width: min(calc(100% - 40px), 840px);
+  }
+
+  .header {
+    min-height: 85px;
+  }
+
+  .headerRight {
+    gap: 18px;
+  }
+
+  .handwritten {
+    display: none;
+  }
+
+  .journeyGrid {
+    display: flex;
+
+    gap: 18px;
+
+    padding-top: 27px;
+  }
+
+  .journeyItem {
+    flex: 0 0 calc((100% - 18px) / 2);
+  }
+
+  .timelineLine {
+    display: none;
+  }
+
+  .timelineNode {
+    top: -50px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 28px);
+
+    padding: 26px 0 28px;
+  }
+
+  .header {
+    align-items: flex-end;
+
+    min-height: auto;
+  }
+
+  .heading {
+    font-size: 27px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+  }
+
+  .navigation {
+    gap: 8px;
+  }
+
+  .navButton {
+    width: 37px;
+    height: 37px;
+  }
+
+  .journeyGrid {
+    display: flex;
+
+    gap: 0;
+
+    padding-top: 25px;
+  }
+
+  .journeyItem {
+    flex: 0 0 100%;
+  }
+
+  .timelineNode {
+    top: -40px;
+
+    left: 16px;
+
+    width: 47px;
+    height: 47px;
+  }
+
+  .card {
+    height: auto;
+
+    min-height: 145px;
+
+    padding: 16px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .container {
+    width: calc(100% - 22px);
+  }
+
+  .heading {
+    font-size: 25px;
+  }
+
+  .card {
+    min-height: 140px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .cardSubtitle {
+    font-size: 11px;
+  }
+
+  .cardDescription {
+    font-size: 10.5px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::after,
+  .timelineNode,
+  .navButton,
+  .sliderTrack {
+    transition: none;
+  }
+
+  .card:hover,
+  .timelineNode:hover,
+  .navButton:hover {
+    transform: none;
+  }
+}

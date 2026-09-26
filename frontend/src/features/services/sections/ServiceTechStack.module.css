@@ -1,0 +1,969 @@
+/* =========================================================
+   SERVICE TECHNOLOGY STACK
+   Premium compact dark technology section
+   ========================================================= */
+
+.section {
+  /* border: 2px solid red; */
+  position: relative;
+
+
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.11);
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.11);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   AMBIENT LIGHT
+   ========================================================= */
+
+.section::before {
+  content: '';
+
+  position: absolute;
+
+  width: 390px;
+  height: 390px;
+
+  left: -250px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 225, 0, 0.11),
+      rgba(255, 225, 0, 0.025) 42%,
+      transparent 72%
+    );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+.section::after {
+  content: '';
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  right: -220px;
+  bottom: -160px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 225, 0, 0.055);
+
+  filter: blur(65px);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   SHELL
+   ========================================================= */
+
+.shell {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+}
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(280px, 0.76fr)
+    minmax(480px, 1.24fr);
+
+  gap:
+    clamp(38px, 5vw, 72px);
+
+  align-items: center;
+}
+
+/* =========================================================
+   LEFT HEADER
+   ========================================================= */
+
+.header {
+  min-width: 0;
+}
+
+.headingRow {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 16px;
+}
+
+/* =========================================================
+   HEADING ICON
+   ========================================================= */
+
+.headingIcon {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffe500;
+
+  border:
+    1px solid
+    rgba(255, 225, 0, 0.32);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 225, 0, 0.11),
+      rgba(255, 225, 0, 0.018)
+    );
+
+  box-shadow:
+    0 0 24px
+      rgba(255, 225, 0, 0.055),
+    inset 0 0 18px
+      rgba(255, 225, 0, 0.025);
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.headingIcon::after {
+  content: '';
+
+  position: absolute;
+
+  inset: -5px;
+
+  border:
+    1px solid
+    rgba(255, 225, 0, 0.08);
+
+  border-radius: 16px;
+
+  opacity: 0;
+
+  transform: scale(0.94);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.headingRow:hover .headingIcon {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(255, 225, 0, 0.68);
+
+  box-shadow:
+    0 0 30px
+      rgba(255, 225, 0, 0.1),
+    inset 0 0 20px
+      rgba(255, 225, 0, 0.05);
+}
+
+.headingRow:hover
+  .headingIcon::after {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.eyebrow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 2px;
+
+  margin:
+    3px 0 8px;
+
+  color: #ffe500;
+
+  font-size: 13px;
+
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: 0.025em;
+}
+
+.arrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin-top: 1px;
+
+  opacity: 0.9;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      1.65rem,
+      2.4vw,
+      2.15rem
+    );
+
+  line-height: 1.08;
+
+  letter-spacing: -0.025em;
+
+  font-weight: 750;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.description {
+  max-width: 330px;
+
+  margin:
+    17px 0 0 74px;
+
+  color:
+    rgba(255, 255, 255, 0.57);
+
+  font-size: 11.5px;
+
+  line-height: 1.65;
+}
+
+/* =========================================================
+   RIGHT PANEL
+   ========================================================= */
+
+.stackPanel {
+  position: relative;
+
+  min-width: 0;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.095);
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 23, 25, 0.58),
+      rgba(6, 12, 14, 0.45)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.025),
+    0 18px 45px
+      rgba(0, 0, 0, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  overflow: hidden;
+
+  transition:
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.stackPanel::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 15%;
+  right: 15%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 225, 0, 0.26),
+      transparent
+    );
+
+  opacity: 0.7;
+}
+
+.stackPanel:hover {
+  border-color:
+    rgba(255, 225, 0, 0.17);
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.03),
+    0 20px 48px
+      rgba(0, 0, 0, 0.17);
+}
+
+/* =========================================================
+   TABS
+   ========================================================= */
+
+.tabsWrapper {
+  padding:
+    10px
+    10px
+    0;
+}
+
+.tabs {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+
+  gap: 4px;
+
+  padding: 2px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.075);
+
+  border-radius: 9px;
+
+  background:
+    rgba(3, 8, 10, 0.66);
+}
+
+/* =========================================================
+   TAB
+   ========================================================= */
+
+.tab {
+  position: relative;
+
+  min-width: 0;
+
+  min-height: 34px;
+
+  padding:
+    7px
+    11px;
+
+  border:
+    1px solid transparent;
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color:
+    rgba(255, 255, 255, 0.58);
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  line-height: 1;
+
+  font-weight: 550;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    color 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease;
+}
+
+.tab:hover {
+  color:
+    rgba(255, 255, 255, 0.9);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+}
+
+.tab:focus-visible {
+  outline:
+    2px solid
+    rgba(255, 225, 0, 0.7);
+
+  outline-offset: 2px;
+}
+
+.tabActive {
+  color: #080a0b;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffe92d 0%,
+      #ffe000 100%
+    );
+
+  border-color:
+    rgba(255, 235, 80, 0.7);
+
+  box-shadow:
+    0 0 18px
+      rgba(255, 225, 0, 0.13),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.28);
+
+  font-weight: 700;
+}
+
+.tabActive:hover {
+  color: #080a0b;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffec42,
+      #ffe000
+    );
+
+  transform:
+    translateY(-1px);
+}
+
+/* =========================================================
+   TECHNOLOGY VIEWPORT
+   ========================================================= */
+
+.technologyViewport {
+  padding:
+    11px
+    12px
+    13px;
+
+  min-height: 112px;
+}
+
+/* =========================================================
+   TECHNOLOGY GRID
+   ========================================================= */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      7,
+      minmax(0, 1fr)
+    );
+
+  gap: 8px;
+
+  min-height: 87px;
+}
+
+/* =========================================================
+   TECH ITEM
+   ========================================================= */
+
+.techItem {
+  min-width: 0;
+}
+
+/* =========================================================
+   TECH TILE
+   ========================================================= */
+
+.techTile {
+  position: relative;
+
+  height: 100%;
+
+  min-height: 84px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding:
+    7px
+    4px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 28, 30, 0.62),
+      rgba(7, 13, 15, 0.48)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.018);
+
+  overflow: hidden;
+
+  transition:
+    transform 260ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    border-color 260ms ease,
+    background 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.techTile::after {
+  content: '';
+
+  position: absolute;
+
+  width: 60px;
+  height: 60px;
+
+  left: 50%;
+  top: -30px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 225, 0, 0.06);
+
+  filter: blur(22px);
+
+  opacity: 0;
+
+  transition:
+    opacity 260ms ease;
+
+  pointer-events: none;
+}
+
+.techTile:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    rgba(255, 225, 0, 0.24);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 32, 34, 0.76),
+      rgba(8, 15, 17, 0.6)
+    );
+
+  box-shadow:
+    0 10px 22px
+      rgba(0, 0, 0, 0.16),
+    0 0 18px
+      rgba(255, 225, 0, 0.035);
+}
+
+.techTile:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   ICON WRAPPER
+   ========================================================= */
+
+.techIconWrapper {
+  position: relative;
+
+  z-index: 1;
+
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17, 26, 28, 0.85),
+      rgba(5, 11, 13, 0.7)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.techTile:hover
+  .techIconWrapper {
+  transform:
+    translateY(-1px);
+
+  border-color:
+    rgba(255, 225, 0, 0.2);
+
+  box-shadow:
+    0 0 17px
+      rgba(255, 225, 0, 0.045);
+}
+
+/* =========================================================
+   REAL TECHNOLOGY LOGO
+   ========================================================= */
+
+.techIcon {
+  width: 27px;
+  height: 27px;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+
+  flex-shrink: 0;
+
+  transition:
+    transform 260ms ease,
+    filter 260ms ease;
+}
+
+.techTile:hover
+  .techIcon {
+  transform:
+    scale(1.08);
+
+  filter:
+    drop-shadow(
+      0 4px 8px
+      rgba(255, 225, 0, 0.08)
+    );
+}
+
+/* =========================================================
+   NAME
+   ========================================================= */
+
+.name {
+  position: relative;
+
+  z-index: 1;
+
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  font-size: 9px;
+
+  line-height: 1.2;
+
+  font-weight: 500;
+
+  text-align: center;
+
+  transition:
+    color 250ms ease;
+}
+
+.techTile:hover .name {
+  color:
+    rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.emptyState {
+  min-height: 87px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size: 11px;
+
+  text-align: center;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: 1fr;
+
+    gap: 34px;
+  }
+
+  .description {
+    max-width: 560px;
+  }
+
+  .stackPanel {
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns:
+      repeat(
+        7,
+        minmax(75px, 1fr)
+      );
+  }
+}
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0, 1fr)
+      );
+  }
+
+  .tab {
+    font-size: 10px;
+
+    padding-inline: 7px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .headingRow {
+    gap: 13px;
+  }
+
+  .headingIcon {
+    width: 51px;
+    height: 51px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    margin-left: 0;
+
+    max-width: 100%;
+
+    font-size: 11.5px;
+  }
+
+  .tabsWrapper {
+    padding:
+      8px
+      8px
+      0;
+  }
+
+  .tabs {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .tab {
+    min-height: 34px;
+  }
+
+  .technologyViewport {
+    padding: 9px;
+  }
+
+  .grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+
+    gap: 7px;
+  }
+
+  .techTile {
+    min-height: 80px;
+  }
+
+  .techIconWrapper {
+    width: 39px;
+    height: 39px;
+  }
+
+  .techIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .name {
+    font-size: 8.5px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .tab {
+    min-height: 32px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .headingIcon,
+  .tab,
+  .techTile,
+  .techIconWrapper,
+  .techIcon {
+    transition: none;
+  }
+
+  .headingRow:hover
+    .headingIcon {
+    transform: none;
+  }
+
+  .tabActive:hover {
+    transform: none;
+  }
+
+  .techTile:hover {
+    transform: none;
+  }
+
+  .techTile:hover
+    .techIcon {
+    transform: none;
+  }
+}

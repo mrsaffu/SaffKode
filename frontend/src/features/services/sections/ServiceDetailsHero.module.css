@@ -1,0 +1,1009 @@
+/* =========================================================
+   SERVICE DETAILS HERO
+   Premium full-bleed service hero
+   ========================================================= */
+
+.hero {
+  --hero-accent: #ffe500;
+  --hero-accent-soft: rgba(255, 229, 0, 0.18);
+  --hero-white: #ffffff;
+  --hero-muted: rgba(255, 255, 255, 0.72);
+  --hero-subtle: rgba(255, 255, 255, 0.48);
+
+  position: relative;
+  isolation: isolate;
+  min-height: min(698px, calc(100vh - 72px));
+
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: stretch;
+
+  background: #050607;
+  color: var(--hero-white);
+  padding-top: 10px;
+}
+
+/* =========================================================
+   BACKGROUND IMAGE
+   ========================================================= */
+
+.background {
+  position: absolute;
+  z-index: -5;
+  inset: 0;
+
+  background-image: var(--hero-bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center right;
+
+  transform-origin: center;
+
+  animation: heroBackgroundEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  will-change: transform;
+}
+
+/* =========================================================
+   BACKGROUND IMAGE PRELOADER
+   Used to detect broken frontend asset URLs.
+
+   It remains visually invisible and does not affect layout.
+   ========================================================= */
+
+.backgroundPreloader {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  overflow: hidden;
+
+  object-fit: cover;
+}
+
+@keyframes heroBackgroundEnter {
+  from {
+    opacity: 0;
+    transform: scale(1.045);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+
+/* =========================================================
+   DARK TEXT PROTECTION
+   ========================================================= */
+
+.backgroundOverlay {
+  position: absolute;
+  z-index: -4;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 5, 6, 0.99) 0%,
+      rgba(3, 5, 6, 0.96) 20%,
+      rgba(3, 5, 6, 0.82) 38%,
+      rgba(3, 5, 6, 0.38) 58%,
+      rgba(3, 5, 6, 0.05) 78%,
+      rgba(3, 5, 6, 0.12) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.22) 0%,
+      rgba(0, 0, 0, 0.02) 42%,
+      rgba(0, 0, 0, 0.42) 100%
+    );
+}
+
+/* =========================================================
+   ADDITIONAL LEFT-SIDE DEPTH
+   ========================================================= */
+
+.backgroundGlow {
+  position: absolute;
+  z-index: -3;
+
+  top: 18%;
+  left: -15%;
+
+  width: 650px;
+  height: 650px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 229, 0, 0.08) 0%,
+    rgba(255, 229, 0, 0.025) 38%,
+    transparent 72%
+  );
+
+  filter: blur(20px);
+
+  animation: glowFloat 7s ease-in-out infinite;
+}
+
+@keyframes glowFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(30px, -18px, 0);
+  }
+}
+
+/* =========================================================
+   SUBTLE FILM GRAIN
+   ========================================================= */
+
+.noise {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.035;
+
+  background-image: radial-gradient(rgba(255, 255, 255, 0.7) 0.55px, transparent 0.55px);
+
+  background-size: 5px 5px;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+  position: relative;
+
+  width: min(100% - 158px, 1500px);
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.breadcrumbWrap {
+  position: relative;
+  z-index: 5;
+
+  min-height: 28px;
+
+  display: flex;
+  justify-content: start;
+  align-items: end;
+
+  margin-top: clamp(16px, 2vh, 16px);
+}
+
+/*
+   The Breadcrumb component may already have its own styling.
+   These selectors provide visual overrides through the wrapper.
+ */
+
+.breadcrumbWrap :global(a),
+.breadcrumbWrap :global(span) {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.breadcrumbWrap :global(a:hover) {
+  color: var(--hero-accent);
+}
+
+.breadcrumbWrap :global(svg) {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.content {
+  border-bottom: 1px solid rgba(255, 215, 0, 0.35);
+
+  width: min(100% - 0px, 1500px);
+  min-height: inherit;
+
+  flex: 1;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(540px, 0.94fr)
+    minmax(420px, 1.06fr);
+
+  align-items: center;
+
+  min-height: 0;
+}
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.copy {
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  max-width: 700px;
+}
+
+/* =========================================================
+   SERVICE META
+   ========================================================= */
+
+.serviceMeta {
+  display: flex;
+  align-items: center;
+
+  gap: 23px;
+
+  margin-bottom: 20px;
+}
+
+.iconWrapper {
+  position: relative;
+
+  width: 46px;
+  height: 46px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 229, 0, 0.72);
+
+  border-radius: 16px;
+
+  color: var(--hero-accent);
+
+  background: linear-gradient(145deg, rgba(255, 229, 0, 0.17), rgba(255, 229, 0, 0.035));
+
+  box-shadow:
+    0 0 0 1px rgba(255, 229, 0, 0.04),
+    0 0 28px rgba(255, 229, 0, 0.12),
+    inset 0 0 24px rgba(255, 229, 0, 0.04);
+
+  transition:
+    transform 350ms ease,
+    box-shadow 350ms ease,
+    border-color 350ms ease;
+}
+
+.iconWrapper::before {
+  content: '';
+
+  position: absolute;
+  inset: -5px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255, 229, 0, 0.12);
+
+  opacity: 0;
+
+  transform: scale(0.94);
+
+  transition:
+    opacity 350ms ease,
+    transform 350ms ease;
+}
+
+.serviceMeta:hover .iconWrapper {
+  transform: translateY(-2px);
+
+  border-color: var(--hero-accent);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 229, 0, 0.08),
+    0 0 38px rgba(255, 229, 0, 0.2),
+    inset 0 0 25px rgba(255, 229, 0, 0.07);
+}
+
+.serviceMeta:hover .iconWrapper::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  color: var(--hero-accent);
+
+  font-size: 12px;
+  line-height: 1;
+
+  font-weight: 500;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.title {
+  margin: 0;
+
+  max-width: 790px;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: clamp(2rem, 4.3vw, 5.15rem);
+
+  line-height: 0.9;
+
+  letter-spacing: -0.045em;
+
+  font-weight: 850;
+
+  text-wrap: balance;
+}
+
+.titleLead {
+  display: block;
+
+  color: #ffffff;
+
+  text-shadow: 0 2px 25px rgba(0, 0, 0, 0.32);
+}
+
+.titleHighlight {
+  display: block;
+
+  color: var(--hero-accent);
+
+  text-shadow: 0 0 30px rgba(255, 229, 0, 0.08);
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.description {
+  max-width: 660px;
+
+  margin: 28px 0 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: clamp(1rem, 1.28vw, 1.32rem);
+
+  line-height: 1.7;
+
+  letter-spacing: -0.01em;
+
+  text-wrap: pretty;
+}
+
+/* =========================================================
+   TECHNOLOGY BADGES
+   ========================================================= */
+
+.techRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 11px;
+
+  margin-top: 25px;
+}
+
+/*
+   TechBadge itself may already contain its own styling.
+   These global overrides make the badges resemble
+   the reference image.
+ */
+
+.techRow :global(*) {
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease,
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.techRow :global(*:hover) {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 229, 0, 0.68);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 0 18px rgba(255, 229, 0, 0.05);
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 17px;
+
+  margin-top: 31px;
+}
+
+/*
+   Primary button
+ */
+
+.actions :global(a:first-child),
+.actions :global(button:first-child) {
+  min-height: 58px;
+
+  padding-inline: 30px;
+
+  border-radius: 13px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  box-shadow: 0 12px 32px rgba(255, 229, 0, 0.13);
+
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    filter 250ms ease;
+}
+
+.actions :global(a:first-child:hover),
+.actions :global(button:first-child:hover) {
+  transform: translateY(-3px);
+
+  filter: brightness(1.04);
+
+  box-shadow:
+    0 17px 40px rgba(255, 229, 0, 0.2),
+    0 0 25px rgba(255, 229, 0, 0.08);
+}
+
+/*
+   Secondary button
+ */
+
+.actions :global(a:nth-child(2)),
+.actions :global(button:nth-child(2)) {
+  min-height: 58px;
+
+  padding-inline: 30px;
+
+  border-radius: 13px;
+
+  border-color: rgba(255, 229, 0, 0.65);
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.18);
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease,
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.actions :global(a:nth-child(2):hover),
+.actions :global(button:nth-child(2):hover) {
+  transform: translateY(-3px);
+
+  border-color: var(--hero-accent);
+
+  background: rgba(255, 229, 0, 0.05);
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 229, 0, 0.06);
+}
+
+/* =========================================================
+   FEATURE ROW
+   ========================================================= */
+
+.featureRow {
+  width: min(100%, 760px);
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  margin-top: 42px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 58px;
+
+  padding-right: 26px;
+
+  transition:
+    transform 250ms ease,
+    opacity 250ms ease;
+}
+
+.feature:hover {
+  transform: translateY(-2px);
+}
+
+.featureWithBorder {
+  padding-left: 27px;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.featureIcon {
+  flex: 0 0 auto;
+
+  width: 47px;
+  height: 47px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 229, 0, 0.24);
+
+  border-radius: 11px;
+
+  color: var(--hero-accent);
+
+  background: rgba(255, 229, 0, 0.025);
+
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.feature:hover .featureIcon {
+  border-color: rgba(255, 229, 0, 0.7);
+
+  background: rgba(255, 229, 0, 0.06);
+
+  box-shadow: 0 0 22px rgba(255, 229, 0, 0.08);
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  color: rgba(255, 255, 255, 0.62);
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}
+
+.featureText strong {
+  color: rgba(255, 255, 255, 0.92);
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.featureText span {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+/* =========================================================
+   RIGHT VISUAL SPACE
+   ========================================================= */
+
+.visualSpace {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-height: 500px;
+
+  pointer-events: none;
+}
+
+.visualGlow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  right: 7%;
+  top: 18%;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 179, 0, 0.12) 0%,
+    rgba(255, 179, 0, 0.035) 42%,
+    transparent 72%
+  );
+
+  filter: blur(24px);
+
+  animation: rightGlowPulse 5.5s ease-in-out infinite;
+}
+
+@keyframes rightGlowPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.visualHighlight {
+  position: absolute;
+
+  width: 1px;
+  height: 220px;
+
+  right: 18%;
+  top: 15%;
+
+  background: linear-gradient(180deg, transparent, rgba(255, 229, 0, 0.24), transparent);
+
+  filter: blur(1px);
+
+  opacity: 0.35;
+}
+
+/* =========================================================
+   BOTTOM FADE
+   ========================================================= */
+
+.bottomFade {
+  position: absolute;
+
+  z-index: 3;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 90px;
+
+  pointer-events: none;
+
+  background: linear-gradient(180deg, transparent, rgba(3, 5, 6, 0.72));
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1600px) {
+  .container {
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+
+  .content {
+    grid-template-columns:
+      minmax(600px, 0.9fr)
+      minmax(550px, 1.1fr);
+  }
+
+  .title {
+    font-size: clamp(4.8rem, 5.1vw, 6.5rem);
+  }
+}
+
+/* =========================================================
+   TABLET / LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .container {
+    min-height: auto;
+
+    padding-top: 28px;
+    padding-bottom: 52px;
+  }
+
+  .content {
+    grid-template-columns:
+      minmax(480px, 1fr)
+      minmax(300px, 0.72fr);
+  }
+
+  .title {
+    font-size: clamp(3.2rem, 6vw, 5rem);
+  }
+
+  .description {
+    max-width: 590px;
+  }
+
+  .visualSpace {
+    min-height: 430px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 960px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .container {
+    padding: 26px 34px 55px;
+  }
+
+  .breadcrumbWrap {
+    margin-bottom: 52px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+     The actual background image remains visible behind
+     the content, but gets stronger dark protection.
+   */
+
+  .backgroundOverlay {
+    background:
+      linear-gradient(90deg, rgba(3, 5, 6, 0.96), rgba(3, 5, 6, 0.76)),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.76));
+  }
+
+  .copy {
+    max-width: 760px;
+  }
+
+  .visualSpace {
+    display: none;
+  }
+
+  .title {
+    max-width: 760px;
+
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .featureRow {
+    max-width: 800px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 100svh;
+
+    background: #050607;
+  }
+
+  .container {
+    min-height: 100svh;
+
+    padding: 22px 20px 38px;
+  }
+
+  .background {
+    background-position: 68% center;
+
+    transform: scale(1.04);
+  }
+
+  .backgroundOverlay {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 5, 6, 0.96) 0%,
+      rgba(3, 5, 6, 0.79) 27%,
+      rgba(3, 5, 6, 0.69) 53%,
+      rgba(3, 5, 6, 0.95) 100%
+    );
+  }
+
+  .breadcrumbWrap {
+    margin-bottom: 46px;
+
+    overflow: hidden;
+  }
+
+  .breadcrumbWrap :global(*) {
+    font-size: 12px;
+  }
+
+  .serviceMeta {
+    gap: 14px;
+
+    margin-bottom: 18px;
+  }
+
+  .iconWrapper {
+    width: 53px;
+    height: 53px;
+
+    border-radius: 14px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+
+    letter-spacing: 0.13em;
+  }
+
+  .title {
+    font-size: clamp(2.7rem, 13vw, 4.3rem);
+
+    line-height: 0.96;
+
+    letter-spacing: -0.045em;
+  }
+
+  .description {
+    margin-top: 22px;
+
+    font-size: 15px;
+
+    line-height: 1.65;
+  }
+
+  .techRow {
+    gap: 8px;
+
+    margin-top: 21px;
+  }
+
+  .actions {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 11px;
+
+    margin-top: 25px;
+  }
+
+  .actions :global(a),
+  .actions :global(button) {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .featureRow {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 0;
+
+    margin-top: 31px;
+  }
+
+  .feature {
+    min-height: 63px;
+
+    padding: 12px 0;
+  }
+
+  .featureWithBorder {
+    padding-left: 0;
+
+    border-left: 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
+  }
+
+  .featureIcon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .featureText {
+    font-size: 13px;
+  }
+
+  .featureText strong {
+    font-size: 13px;
+  }
+
+  .bottomFade {
+    height: 60px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .container {
+    padding-inline: 16px;
+  }
+
+  .title {
+    font-size: 2.55rem;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .iconWrapper {
+    width: 49px;
+    height: 49px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .background,
+  .backgroundGlow,
+  .visualGlow,
+  .iconWrapper,
+  .feature,
+  .featureIcon {
+    animation: none !important;
+
+    transition: none !important;
+  }
+}

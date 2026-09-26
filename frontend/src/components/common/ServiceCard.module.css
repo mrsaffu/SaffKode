@@ -1,0 +1,395 @@
+.card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 286px;
+  height: 100%;
+
+  padding: 25px 26px 20px;
+
+  overflow: hidden;
+
+  text-decoration: none;
+  color: inherit;
+
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 221, 0, 0.035), transparent 34%),
+    linear-gradient(145deg, rgba(10, 17, 20, 0.94), rgba(4, 9, 11, 0.96));
+
+  border: 1px solid rgba(116, 131, 137, 0.28);
+
+  border-radius: 14px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.22),
+    0 8px 24px rgba(0, 0, 0, 0.16);
+
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    background 260ms ease;
+
+  isolation: isolate;
+}
+
+/* Subtle top highlight */
+.card::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+
+  height: 1px;
+
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+
+  pointer-events: none;
+}
+
+/* Subtle yellow ambient glow */
+.card::after {
+  content: '';
+
+  position: absolute;
+
+  top: -80px;
+  right: -80px;
+
+  width: 170px;
+  height: 170px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 220, 0, 0.035);
+
+  filter: blur(45px);
+
+  opacity: 0;
+
+  transition: opacity 280ms ease;
+
+  pointer-events: none;
+}
+
+/* --------------------------------
+   Hover
+--------------------------------- */
+
+.card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(255, 221, 0, 0.38);
+
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 221, 0, 0.07), transparent 38%),
+    linear-gradient(145deg, rgba(11, 19, 22, 0.98), rgba(4, 9, 11, 0.98));
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 14px 34px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(255, 221, 0, 0.025);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* --------------------------------
+   Top row
+--------------------------------- */
+
+.topRow {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-bottom: 17px;
+}
+
+/* --------------------------------
+   Service icon
+--------------------------------- */
+
+.icon {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  color: var(--color-accent);
+
+  background: transparent;
+
+  border: 0;
+
+  transition:
+    transform 260ms ease,
+    filter 260ms ease;
+}
+
+.card:hover .icon {
+  transform: translateY(-1px);
+
+  filter: drop-shadow(0 0 7px rgba(255, 221, 0, 0.28));
+}
+
+/* --------------------------------
+   Number
+--------------------------------- */
+
+.index {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding-top: 2px;
+
+  font-size: 15px;
+  line-height: 1;
+
+  font-weight: 500;
+
+  letter-spacing: 0.02em;
+
+  color: rgba(224, 229, 231, 0.78);
+}
+
+/* --------------------------------
+   Title row
+--------------------------------- */
+
+.titleRow {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  width: 100%;
+
+  margin-bottom: 13px;
+}
+
+/* --------------------------------
+   Title
+--------------------------------- */
+
+.title {
+  margin: 0;
+
+  max-width: calc(100% - 48px);
+
+  color: rgba(248, 249, 249, 0.97);
+
+  font-size: 19px;
+  line-height: 1.22;
+
+  font-weight: 650;
+
+  letter-spacing: -0.015em;
+
+  text-wrap: balance;
+}
+
+/* --------------------------------
+   Circular arrow button
+--------------------------------- */
+
+.arrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  color: #101010;
+
+  background: var(--color-accent);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease,
+    background-color 260ms ease;
+}
+
+.card:hover .arrow {
+  transform: translateX(3px);
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.3),
+    0 0 14px rgba(255, 221, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* --------------------------------
+   Description
+--------------------------------- */
+
+.description {
+  margin: 0;
+
+  max-width: 100%;
+
+  color: rgba(193, 201, 205, 0.82);
+
+  font-size: 15px;
+  line-height: 1.48;
+
+  font-weight: 400;
+
+  letter-spacing: -0.005em;
+
+  flex: 1;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+
+  overflow: hidden;
+}
+
+/* --------------------------------
+   Technology row
+--------------------------------- */
+
+.techRow {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  width: 100%;
+
+  margin-top: 18px;
+}
+
+/* --------------------------------
+   Accessibility
+--------------------------------- */
+
+.card:focus-visible {
+  outline: 2px solid var(--color-accent);
+
+  outline-offset: 3px;
+}
+
+/* --------------------------------
+   Tablet
+--------------------------------- */
+
+@media (max-width: 900px) {
+  .card {
+    min-height: 280px;
+
+    padding: 23px 23px 19px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
+
+/* --------------------------------
+   Mobile
+--------------------------------- */
+
+@media (max-width: 600px) {
+  .card {
+    min-height: 270px;
+
+    padding: 22px 21px 18px;
+
+    border-radius: 13px;
+  }
+
+  .topRow {
+    margin-bottom: 15px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .index {
+    font-size: 14px;
+  }
+
+  .titleRow {
+    gap: 10px;
+
+    margin-bottom: 12px;
+  }
+
+  .title {
+    font-size: 18px;
+
+    max-width: calc(100% - 44px);
+  }
+
+  .arrow {
+    width: 37px;
+    height: 37px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .techRow {
+    margin-top: 16px;
+
+    gap: 7px;
+  }
+}
+
+/* --------------------------------
+   Reduced motion
+--------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::after,
+  .icon,
+  .arrow {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}

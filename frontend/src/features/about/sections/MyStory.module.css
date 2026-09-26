@@ -1,0 +1,912 @@
+/* =========================================================
+   MY STORY / VALUES / BEYOND CODE
+   PREMIUM LAPTOP / DESKTOP LAYOUT
+   ========================================================= */
+
+.section {
+  /* border: 2px solid red; */
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 229, 0, 0.035), transparent 30%),
+    radial-gradient(circle at 15% 85%, rgba(255, 229, 0, 0.018), transparent 32%), #080a0b;
+
+  /* border-top: 1px solid rgba(255, 255, 255, 0.08); */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+  position: relative;
+
+  width: min(calc(100% - 80px), 1360px);
+
+  min-height: 610px;
+
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  column-gap: 0;
+}
+
+/* =========================================================
+   LEFT COLUMN
+   ========================================================= */
+
+.storyColumn {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 42px 58px 42px 4px;
+}
+
+/* =========================================================
+   RIGHT COLUMN
+   ========================================================= */
+
+.rightColumn {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 42px 4px 42px 58px;
+}
+
+/* =========================================================
+   CENTER DIVIDER
+   ========================================================= */
+
+.container::after {
+  content: '';
+
+  position: absolute;
+
+  top: 30px;
+  bottom: 30px;
+  left: 50%;
+
+  width: 1px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.13) 10%,
+    rgba(255, 255, 255, 0.13) 90%,
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.headingBlock {
+  position: relative;
+
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  margin-bottom: 7px;
+
+  color: #ffe500;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.eyebrowLine {
+  width: 25px;
+  height: 2px;
+
+  flex: 0 0 auto;
+
+  border-radius: 999px;
+
+  background: #ffe500;
+
+  box-shadow: 0 0 10px rgba(255, 229, 0, 0.28);
+}
+
+.heading {
+  margin: 0;
+
+  color: #f6f7f8;
+
+  font-size: clamp(32px, 3vw, 42px);
+
+  font-weight: 700;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.035em;
+}
+
+.heading span {
+  color: #ffe500;
+
+  text-shadow: 0 0 25px rgba(255, 229, 0, 0.1);
+}
+
+/* =========================================================
+   STORY CONTENT
+   ========================================================= */
+
+.storyContent {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+
+  max-width: 720px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.paragraph {
+  margin: 0;
+
+  color: rgba(228, 231, 234, 0.84);
+
+  font-size: 15px;
+
+  font-weight: 400;
+
+  line-height: 1.58;
+
+  letter-spacing: -0.006em;
+}
+
+/* =========================================================
+   QUOTE CARD
+   ========================================================= */
+
+.quoteCard {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 17px;
+
+  margin-top: auto;
+
+  width: 100%;
+
+  min-height: 86px;
+
+  padding: 17px 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.17);
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.008)
+  );
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.quoteCard::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 13px;
+  bottom: 13px;
+
+  width: 3px;
+
+  border-radius: 0 4px 4px 0;
+
+  background: #ffe500;
+
+  box-shadow: 0 0 12px rgba(255, 229, 0, 0.22);
+}
+
+.quoteCard:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(255, 229, 0, 0.3);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 229, 0, 0.045),
+    rgba(255, 255, 255, 0.012)
+  );
+
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.22);
+}
+
+.quoteMark {
+  flex: 0 0 auto;
+
+  margin-top: -7px;
+
+  color: #ffe500;
+
+  font-family: Georgia, serif;
+
+  font-size: 55px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-shadow: 0 0 16px rgba(255, 229, 0, 0.18);
+}
+
+.quoteCard p {
+  margin: 3px 0 0;
+
+  color: rgba(245, 246, 247, 0.93);
+
+  font-size: 14px;
+
+  line-height: 1.55;
+}
+
+/* =========================================================
+   VALUES SECTION
+   ========================================================= */
+
+.valuesSection {
+  position: relative;
+}
+
+.valuesGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-top: 2px;
+}
+
+/* =========================================================
+   VALUE CARD
+   ========================================================= */
+
+.valueCard {
+  position: relative;
+
+  width: 100%;
+
+  height: 150px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+
+  padding: 20px 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.032),
+    rgba(255, 255, 255, 0.008)
+  );
+
+  overflow: hidden;
+
+  transition:
+    transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 320ms ease,
+    background 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.valueCard::before {
+  content: '';
+
+  position: absolute;
+
+  top: -70px;
+  right: -70px;
+
+  width: 150px;
+  height: 150px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 229, 0, 0.09);
+
+  filter: blur(35px);
+
+  opacity: 0;
+
+  transition: opacity 350ms ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(255, 229, 0, 0.32);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 229, 0, 0.045),
+    rgba(255, 255, 255, 0.012)
+  );
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.25),
+    0 0 25px rgba(255, 229, 0, 0.035);
+}
+
+.valueCard:hover::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   VALUE ICON
+   ========================================================= */
+
+.valueIcon {
+  position: relative;
+  z-index: 1;
+
+  flex: 0 0 auto;
+
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffe500;
+
+  transition:
+    transform 300ms ease,
+    filter 300ms ease;
+}
+
+.valueCard:hover .valueIcon {
+  transform: scale(1.09);
+
+  filter: drop-shadow(0 0 9px rgba(255, 229, 0, 0.38));
+}
+
+/* =========================================================
+   VALUE CONTENT
+   ========================================================= */
+
+.valueContent {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+
+  padding-top: 1px;
+}
+
+.valueContent h3 {
+  margin: 0 0 9px;
+
+  color: #f4f5f6;
+
+  font-size: 16px;
+
+  font-weight: 650;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.01em;
+}
+
+.valueContent p {
+  margin: 0;
+
+  color: rgba(211, 215, 219, 0.73);
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   BEYOND CODE
+   ========================================================= */
+
+.beyondSection {
+  margin-top: auto;
+
+  padding-top: 34px;
+}
+
+.interestsGrid {
+  display: grid;
+
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  gap: 13px;
+
+  margin-top: 4px;
+}
+
+.interestItem {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  gap: 8px;
+
+  color: rgba(220, 223, 226, 0.86);
+
+  text-align: center;
+
+  transition:
+    color 250ms ease,
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.interestItem:hover {
+  color: #ffffff;
+
+  transform: translateY(-5px);
+}
+
+.interestIcon {
+  width: 64px;
+  height: 56px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 10px;
+
+  color: #ffe500;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.028),
+    rgba(255, 255, 255, 0.006)
+  );
+
+  transition:
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+.interestItem:hover .interestIcon {
+  border-color: rgba(255, 229, 0, 0.38);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 229, 0, 0.075),
+    rgba(255, 255, 255, 0.012)
+  );
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    0 0 18px rgba(255, 229, 0, 0.07);
+
+  transform: translateY(-2px);
+}
+
+.interestItem span {
+  max-width: 100px;
+
+  font-size: 12px;
+
+  line-height: 1.25;
+}
+
+/* =========================================================
+   TOP ACCENT
+   ========================================================= */
+
+.section::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: min(900px, 75%);
+
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(90deg, transparent, rgba(255, 229, 0, 0.18), transparent);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   LARGE LAPTOP
+   1200px — 1399px
+   ========================================================= */
+
+@media (max-width: 1399px) {
+  .container {
+    width: min(calc(100% - 64px), 1240px);
+
+    min-height: 580px;
+  }
+
+  .storyColumn {
+    padding: 38px 45px 38px 4px;
+  }
+
+  .rightColumn {
+    padding: 38px 4px 38px 45px;
+  }
+
+  .paragraph {
+    font-size: 14px;
+  }
+
+  .valueCard {
+    height: 142px;
+
+    padding: 17px;
+  }
+
+  .valueContent h3 {
+    font-size: 15px;
+  }
+
+  .valueContent p {
+    font-size: 11.5px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+   1024px — 1199px
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .container {
+    width: min(calc(100% - 48px), 1080px);
+
+    min-height: 550px;
+  }
+
+  .storyColumn {
+    padding: 34px 32px 34px 4px;
+  }
+
+  .rightColumn {
+    padding: 34px 4px 34px 32px;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+  }
+
+  .paragraph {
+    font-size: 13px;
+  }
+
+  .storyContent {
+    gap: 12px;
+  }
+
+  .quoteCard {
+    min-height: 80px;
+
+    padding: 15px 17px;
+  }
+
+  .valueCard {
+    height: 132px;
+
+    gap: 11px;
+
+    padding: 15px 13px;
+  }
+
+  .valueIcon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .valueContent h3 {
+    font-size: 13px;
+  }
+
+  .valueContent p {
+    font-size: 10.5px;
+  }
+
+  .interestIcon {
+    width: 56px;
+    height: 50px;
+  }
+
+  .interestItem span {
+    font-size: 10.5px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .container {
+    width: min(calc(100% - 40px), 680px);
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: auto;
+  }
+
+  .container::after {
+    display: none;
+  }
+
+  .storyColumn,
+  .rightColumn {
+    padding: 36px 0;
+  }
+
+  .storyColumn {
+    padding-bottom: 34px;
+  }
+
+  .rightColumn {
+    padding-top: 34px;
+  }
+
+  .storyColumn::after {
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 1px;
+
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.14),
+      transparent
+    );
+  }
+
+  .paragraph {
+    font-size: 14px;
+  }
+
+  .valueCard {
+    height: 140px;
+  }
+
+  .valueContent h3 {
+    font-size: 14px;
+  }
+
+  .valueContent p {
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .container {
+    width: min(calc(100% - 28px), 500px);
+  }
+
+  .storyColumn,
+  .rightColumn {
+    padding: 28px 0;
+  }
+
+  .storyColumn {
+    padding-bottom: 28px;
+  }
+
+  .rightColumn {
+    padding-top: 28px;
+  }
+
+  .headingBlock {
+    margin-bottom: 14px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+  }
+
+  .eyebrowLine {
+    width: 20px;
+  }
+
+  .paragraph {
+    font-size: 13px;
+
+    line-height: 1.58;
+  }
+
+  .storyContent {
+    gap: 11px;
+  }
+
+  .quoteCard {
+    margin-top: 20px;
+
+    min-height: 82px;
+
+    padding: 14px;
+  }
+
+  .quoteMark {
+    font-size: 45px;
+  }
+
+  .quoteCard p {
+    font-size: 12px;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .valueCard {
+    height: 108px;
+
+    padding: 15px;
+
+    gap: 12px;
+  }
+
+  .valueIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .valueContent h3 {
+    font-size: 13px;
+  }
+
+  .valueContent p {
+    font-size: 10.5px;
+  }
+
+  .beyondSection {
+    padding-top: 30px;
+  }
+
+  .interestsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px 10px;
+  }
+
+  .interestIcon {
+    width: 52px;
+    height: 46px;
+  }
+
+  .interestItem span {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .container {
+    width: calc(100% - 22px);
+  }
+
+  .storyColumn,
+  .rightColumn {
+    padding: 24px 0;
+  }
+
+  .heading {
+    font-size: 25px;
+  }
+
+  .paragraph {
+    font-size: 12px;
+  }
+
+  .valueCard {
+    height: 100px;
+  }
+
+  .valueContent h3 {
+    font-size: 12px;
+  }
+
+  .valueContent p {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .quoteCard,
+  .valueCard,
+  .valueIcon,
+  .interestItem,
+  .interestIcon {
+    transition: none;
+  }
+
+  .quoteCard:hover,
+  .valueCard:hover,
+  .interestItem:hover {
+    transform: none;
+  }
+}

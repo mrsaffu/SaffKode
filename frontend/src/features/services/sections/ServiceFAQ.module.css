@@ -1,0 +1,158 @@
+.mainsection {
+  /* border: 0.5px solid red; */
+}
+.topborder {
+  border-top: 1px solid rgba(255, 255, 255, 0.105);
+
+  position: relative;
+  top: -50px;
+}
+
+.bottomborder {
+  border-top: 1px solid rgba(255, 255, 255, 0.105);
+  position: relative;
+  bottom: -50px;
+
+}
+.section {
+  /* border: 2px solid red; */
+  position: relative;
+}
+
+/* =========================================================
+   TWO COLUMN FAQ LAYOUT
+   ========================================================= */
+
+.layout {
+  /* border: 2px solid red; */
+
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(420px, 1.22fr);
+  align-items: start;
+  gap: clamp(3rem, 7vw, 6.5rem);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  /* border: 2px solid red; */
+
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.headingIcon {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-top: 0.1rem;
+  border: 1px solid rgba(214, 194, 0, 0.32);
+  border-radius: 9px;
+  color: var(--color-accent);
+  background:
+    linear-gradient(145deg, rgba(215, 194, 0, 0.12), rgba(215, 194, 0, 0.025)),
+    rgba(7, 13, 13, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 22px rgba(214, 194, 0, 0.05);
+}
+
+.headingIcon::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 0%, rgba(214, 194, 0, 0.18), transparent 60%);
+}
+
+.headingContent {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--color-accent);
+  font-size: 0.66rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(1.45rem, 2.1vw, 1.8rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.description {
+  margin: 0.55rem 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   ACCORDION
+   ========================================================= */
+
+.wrapper {
+  min-width: 0;
+  width: 100%;
+}
+
+.accordion {
+  gap: 0.3rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(240px, 0.7fr) minmax(360px, 1.3fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .header {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headingIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .headingIcon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
+
+  .description {
+    font-size: 0.68rem;
+  }
+}
