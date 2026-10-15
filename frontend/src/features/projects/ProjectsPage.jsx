@@ -4,18 +4,18 @@ import { getProjects } from '../../services/api/projectsApi';
 import PageContainer from '../../components/layout/PageContainer';
 import Section from '../../components/layout/Section';
 import SectionHeading from '../../components/layout/SectionHeading';
-import Button from '../../components/ui/Button';
-import { LoadingState, ErrorState, ProcessSteps, CTABanner, TechStackStrip } from '../../components/common';
+
+import {
+  LoadingState,
+  ErrorState,
+  ProcessSteps,
+  CTABanner,
+  TechStackStrip,
+} from '../../components/common';
 import ProjectsHero from './sections/ProjectsHero';
 import ProjectsFilterBar from './sections/ProjectsFilterBar';
 import ProjectsGrid from './sections/ProjectsGrid';
 
-/**
- * ProjectsPage — Phase 8. Hero, category/search filter bar (re-fetches
- * from GET /api/v1/projects on change), the project grid, development
- * process, tech stack, and closing CTA. Process steps and the tech list
- * come from the API response, not hardcoded here.
- */
 function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState('All Projects');
   const [searchInput, setSearchInput] = useState('');
@@ -70,18 +70,11 @@ function ProjectsPage() {
           />
         )}
       </Section>
-
       <TechStackStrip
         technologies={data?.technologies}
-        eyebrow="Technologies I Use"
-        title="Technologies I"
+        eyebrow="Technology Stack"
+        title="Technologies We"
         highlight="Use"
-        description="Tools and technologies that help me build scalable and modern applications."
-        action={
-          <Button to="/skills" variant="outline" size="sm">
-            View My Skills
-          </Button>
-        }
       />
 
       {data?.developmentProcess?.length > 0 && (
@@ -97,7 +90,8 @@ function ProjectsPage() {
       )}
 
       <CTABanner
-        title="Have a Project in Mind?"
+        title="Have
+         a Project in Mind?"
         subtitle="Let's turn your ideas into reality. I'm open to freelance work, collaborations, and full-time opportunities."
       />
     </main>

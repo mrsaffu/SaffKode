@@ -4,6 +4,7 @@
    ========================================================= */
 
 .hero {
+  /* border: 2px solid red; */
   --hero-accent: #ffe500;
   --hero-accent-soft: rgba(255, 229, 0, 0.18);
   --hero-white: #ffffff;
@@ -167,6 +168,8 @@
    ========================================================= */
 
 .container {
+  /* border: 2px solid red; */
+  
   position: relative;
 
   width: min(100% - 158px, 1500px);
@@ -778,7 +781,9 @@
   }
 
   .container {
-    padding: 26px 34px 55px;
+  width: min(100% - 0px, 1500px);
+
+    padding: none;
   }
 
   .breadcrumbWrap {

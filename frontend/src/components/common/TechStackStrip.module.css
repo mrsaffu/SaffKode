@@ -1,20 +1,562 @@
 .header {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-4);
-  margin-bottom: var(--space-8);
+
+  gap: var(--space-6);
+
+  margin: 0 0 var(--space-7);
 }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
+.action {
+  flex-shrink: 0;
+
+  padding-top: 2px;
 }
+
+/* =========================================================
+   CAROUSEL
+   ========================================================= */
+
+.carousel {
+  position: relative;
+
+  width: 100%;
+}
+
+/* =========================================================
+   VIEWPORT
+   ========================================================= */
+
+.viewport {
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  outline: none;
+
+  border-radius: 14px;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+
+  touch-action: pan-x;
+
+  cursor: grab;
+
+  container-type: inline-size;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.viewport:active {
+  cursor: grabbing;
+}
+
+.viewport:focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(255, 221, 0, 0.45),
+    0 0 0 4px rgba(255, 221, 0, 0.08);
+}
+
+/* =========================================================
+   TRACK
+   ========================================================= */
+
+.track {
+  --carousel-gap: 12px;
+
+  display: flex;
+
+  gap: var(--carousel-gap);
+
+  width: max-content;
+
+  min-width: 100%;
+}
+
+/* =========================================================
+   SLIDE
+   ========================================================= */
+
+.slide {
+  flex: 0 0 calc((100cqw - (var(--carousel-gap) * 8)) / 9);
+
+  min-width: 0;
+
+  scroll-snap-align: start;
+}
+
+/* =========================================================
+   RESPONSIVE CARD WIDTHS
+   ========================================================= */
+
+@container (min-width: 1281px) {
+  .slide {
+    flex-basis: calc((100cqw - (var(--carousel-gap) * 8)) / 9);
+  }
+}
+
+@container (min-width: 1025px) and (max-width: 1280px) {
+  .slide {
+    flex-basis: calc((100cqw - (var(--carousel-gap) * 6)) / 7);
+  }
+}
+
+@container (min-width: 769px) and (max-width: 1024px) {
+  .slide {
+    flex-basis: calc((100cqw - (var(--carousel-gap) * 3)) / 4);
+  }
+}
+
+@container (min-width: 481px) and (max-width: 768px) {
+  .slide {
+    flex-basis: calc((100cqw - (var(--carousel-gap) * 2)) / 3);
+  }
+}
+
+@container (max-width: 480px) {
+  .slide {
+    flex-basis: calc((100cqw - var(--carousel-gap)) / 2);
+  }
+}
+
+/* =========================================================
+   TECHNOLOGY CARD
+   =========================================================
+
+   IMPORTANT:
+
+   This class is applied ONLY by TechStackStrip.
+
+   TechBadge itself remains untouched.
+*/
+
+.technologyCard.technologyCard {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 84px;
+
+  padding: 10px;
+
+  border-radius: 11px;
+
+  background: linear-gradient(145deg, rgba(13, 19, 22, 0.96), rgba(7, 11, 13, 0.96));
+
+  border: 1px solid rgba(105, 116, 121, 0.22);
+
+  color: rgba(226, 230, 231, 0.88);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 4px 16px rgba(0, 0, 0, 0.12);
+
+  overflow: hidden;
+
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease,
+    background 280ms ease,
+    box-shadow 280ms ease,
+    color 280ms ease;
+}
+
+/* =========================================================
+   TOP HIGHLIGHT
+   ========================================================= */
+
+.technologyCard.technologyCard::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 12%;
+
+  width: 76%;
+  height: 1px;
+
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   AMBIENT YELLOW GLOW
+   ========================================================= */
+
+.technologyCard.technologyCard::after {
+  content: '';
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -45px;
+
+  width: 100px;
+  height: 70px;
+
+  transform: translateX(-50%);
+
+  background: radial-gradient(ellipse, rgba(255, 221, 0, 0.1), transparent 70%);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 300ms ease;
+}
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.technologyCard.technologyCard:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(255, 221, 0, 0.28);
+
+  background: linear-gradient(145deg, rgba(17, 24, 27, 0.98), rgba(8, 12, 14, 0.98));
+
+  color: rgba(248, 249, 249, 0.98);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 10px 24px rgba(0, 0, 0, 0.18),
+    0 0 20px rgba(255, 221, 0, 0.035);
+}
+
+.technologyCard.technologyCard:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   ICON CONTAINER
+   ========================================================= */
+
+.technologyCard.technologyCard > span:first-child {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  margin-bottom: 7px;
+
+  color: inherit;
+
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 350ms ease;
+}
+
+.technologyCard.technologyCard:hover > span:first-child {
+  transform: translateY(-2px) scale(1.04);
+
+  filter: drop-shadow(0 5px 12px rgba(255, 221, 0, 0.08));
+}
+
+/* =========================================================
+   EXPRESS
+   =========================================================
+
+   TechnologyIcon remains untouched.
+
+   Only this section changes the visual treatment.
+*/
+
+.expressIcon {
+  filter: invert(1);
+
+  opacity: 0.96;
+}
+
+/* Prevent the generic hover filter from becoming too strong. */
+
+.technologyCard:hover .expressIcon {
+  filter: invert(1) drop-shadow(0 5px 12px rgba(255, 255, 255, 0.08));
+}
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.technologyCard.technologyCard > span:last-child {
+  position: relative;
+
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  text-align: center;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: var(--space-4);
+
+  margin-top: var(--space-4);
+}
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.progress {
+  position: relative;
+
+  width: 88px;
+  height: 2px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progressBar {
+  display: block;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: var(--color-accent, #ffdd00);
+
+  box-shadow: 0 0 10px rgba(255, 221, 0, 0.2);
+
+  transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.controls {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.control {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.018)
+  );
+
+  color: rgba(235, 238, 239, 0.82);
+
+  cursor: pointer;
+
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    background 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease,
+    opacity 220ms ease;
+}
+
+.control:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 221, 0, 0.45);
+
+  background: linear-gradient(145deg, rgba(255, 221, 0, 0.1), rgba(255, 255, 255, 0.025));
+
+  color: #ffdd00;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 0 18px rgba(255, 221, 0, 0.06);
+}
+
+.control:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.control:focus-visible {
+  outline: none;
+
+  border-color: rgba(255, 221, 0, 0.7);
+
+  box-shadow: 0 0 0 3px rgba(255, 221, 0, 0.12);
+}
+
+.control:disabled {
+  opacity: 0.28;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .track {
+    --carousel-gap: 11px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 640px) {
   .header {
     flex-direction: column;
+
     align-items: flex-start;
+
+    margin-bottom: var(--space-5);
+  }
+
+  .track {
+    --carousel-gap: 10px;
+  }
+
+  .technologyCard.technologyCard {
+    min-height: 78px;
+
+    padding: 9px 7px;
+
+    border-radius: 10px;
+  }
+
+  .technologyCard.technologyCard > span:first-child {
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 6px;
+  }
+
+  .technologyCard.technologyCard > span:last-child {
+    font-size: 10px;
+  }
+
+  .footer {
+    justify-content: space-between;
+
+    margin-top: var(--space-3);
+  }
+
+  .progress {
+    width: 64px;
+  }
+
+  .control {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 9px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .track {
+    --carousel-gap: 9px;
+  }
+
+  .progress {
+    display: none;
+  }
+
+  .footer {
+    justify-content: flex-end;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    scroll-behavior: auto;
+  }
+
+  .technologyCard,
+  .technologyCard::after,
+  .technologyCard > span:first-child,
+  .control,
+  .progressBar {
+    transition: none;
+  }
+
+  .technologyCard.technologyCard:hover,
+  .technologyCard.technologyCard:hover > span:first-child,
+  .control:hover:not(:disabled),
+  .control:active:not(:disabled) {
+    transform: none;
   }
 }

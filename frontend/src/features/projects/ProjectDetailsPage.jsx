@@ -1,5 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Target, ShieldCheck, Database, Layers, AlertTriangle, TrendingUp } from 'lucide-react';
+import {
+  ArrowLeft,
+  Target,
+  ShieldCheck,
+  Database,
+  Layers,
+  AlertTriangle,
+  TrendingUp,
+  ArrowUpRight,
+} from 'lucide-react';
 import { useApi } from '../../hooks/useApi';
 import { getProjectBySlug } from '../../services/api/projectsApi';
 import PageContainer from '../../components/layout/PageContainer';
@@ -9,7 +18,7 @@ import Card from '../../components/ui/Card';
 import { TechBadge, LoadingState, ErrorState, CTABanner } from '../../components/common';
 import { GithubIcon } from '../../components/common/BrandIcons';
 import { SlideUp, FadeIn, Stagger, StaggerItem } from '../../components/animation';
-import SectionNav from './sections/SectionNav';
+// import SectionNav from './sections/SectionNav';
 import FeaturesCarousel from './sections/FeaturesCarousel';
 import TechStackDetailGrid from './sections/TechStackDetailGrid';
 import ScreenshotGallery from './sections/ScreenshotGallery';
@@ -18,26 +27,21 @@ import styles from './ProjectDetailsPage.module.css';
 
 const STAT_ICONS = [ShieldCheck, Database, Layers];
 
-/** Splits a title so the last word can be highlighted in accent color. */
 function splitTitle(title = '') {
-  const words = title.trim().split(' ');
-  const last = words.pop();
+  const words = title.trim().split(/\s+/);
+  const last = words.pop() || '';
   return { lead: words.join(' '), last };
 }
 
-/**
- * ProjectDetailsPage — the single reusable case-study template for every
- * project, entirely data-driven via GET /api/v1/projects/:slug. Never
- * duplicate this per project (no BoothManagementProject.jsx, etc.).
- * Sections render conditionally: a project with only listing-level facts
- * (no case-study detail) still gets a clean page, just a shorter one.
- */
 function ProjectDetailsPage() {
   const { slug } = useParams();
-  const { data: project, error, isLoading, retry } = useApi(
-    () => getProjectBySlug(slug),
-    [slug]
-  );
+
+  const {
+    data: project,
+    error,
+    isLoading,
+    retry,
+  } = useApi(() => getProjectBySlug(slug), [slug]);
 
   if (isLoading) {
     return (
@@ -47,17 +51,17 @@ function ProjectDetailsPage() {
     );
   }
 
-  if (error) {
+  if (error || !project) {
     return (
       <PageContainer as="main" style={{ padding: '4rem 0' }}>
         <ErrorState
-          title={error.status === 404 ? 'Project not found' : 'Something went wrong'}
+          title={error?.status === 404 ? 'Project not found' : 'Something went wrong'}
           message={
-            error.status === 404
+            error?.status === 404
               ? "The project you're looking for doesn't exist or may have been renamed."
               : "We couldn't load this project right now."
           }
-          onRetry={error.status === 404 ? undefined : retry}
+          onRetry={error?.status === 404 ? undefined : retry}
         />
         <div className={styles.backLinkWrapper}>
           <Button to="/projects" variant="ghost" icon={<ArrowLeft size={16} />}>
@@ -79,72 +83,265 @@ function ProjectDetailsPage() {
     project.results?.length && { id: 'results', label: 'Results' },
   ].filter(Boolean);
 
+  const liveDemo = project.liveDemo ?? project.liveUrl;
+  const viewCode = project.viewCode ?? project.githubUrl;
+
   return (
-    <main>
-      <Section spacing="lg">
-        <FadeIn>
-          <Button to="/projects" variant="ghost" size="sm" icon={<ArrowLeft size={16} />}>
-            Back to Projects
-          </Button>
-        </FadeIn>
+    <main className={styles.projectPage}>
+      <section className={styles.hero}>
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <div className={styles.heroGrid} aria-hidden="true" />
 
-        {project.eyebrow && (
-          <FadeIn delay={0.05} className={styles.eyebrow}>
-            {project.eyebrow}
-          </FadeIn>
-        )}
+        <div className={styles.heroInner}>
+          <div className={styles.heroContent}>
+            <FadeIn>
+              <Button
+                to="/projects"
+                variant="ghost"
+                size="sm"
+                icon={<ArrowLeft size={16} />}
+                className={styles.backButton}
+              >
+                Back to Projects
+              </Button>
+            </FadeIn>
 
-        <SlideUp as="h1" delay={0.1} className={styles.title}>
-          {lead && `${lead} `}
-          <span className={styles.highlight}>{last}</span>
-        </SlideUp>
+            {project.eyebrow && (
+              <FadeIn delay={0.05} className={styles.eyebrow}>
+                <span className={styles.eyebrowLine} />
+                {project.eyebrow}
+              </FadeIn>
+            )}
 
-        <SlideUp as="p" delay={0.15} className={styles.description}>
-          {project.description}
-        </SlideUp>
+            <SlideUp as="h1" delay={0.1} className={styles.title}>
+              {lead && <span>{lead} </span>}
+              <span className={styles.highlight}>{last}</span>
+            </SlideUp>
 
-        <FadeIn delay={0.2} className={styles.actions}>
-          {project.liveUrl && (
-            <Button href={project.liveUrl} variant="primary" icon={<ExternalLink size={16} />}>
-              Live Demo
-            </Button>
-          )}
-          {project.githubUrl && (
-            <Button href={project.githubUrl} variant="outline" icon={<GithubIcon size={16} />}>
-              View Code
-            </Button>
-          )}
-        </FadeIn>
+            <SlideUp as="p" delay={0.15} className={styles.description}>
+              {project.description}
+            </SlideUp>
 
-        {!project.liveUrl && !project.githubUrl && (
-          <FadeIn delay={0.2} className={styles.techRow}>
-            {project.technologies?.map((tech) => (
-              <TechBadge key={tech}>{tech}</TechBadge>
-            ))}
-          </FadeIn>
-        )}
+            <FadeIn delay={0.2} className={styles.actions}>
+              <a
+                href={liveDemo || undefined}
+                target={liveDemo ? '_blank' : undefined}
+                rel={liveDemo ? 'noopener noreferrer' : undefined}
+                aria-disabled={!liveDemo}
+                title={
+                  liveDemo
+                    ? 'Open live project'
+                    : 'Add liveDemo URL in project data to enable this link'
+                }
+                onClick={!liveDemo ? (event) => event.preventDefault() : undefined}
+                className={`${styles.primaryAction} ${!liveDemo ? styles.actionDisabled : ''}`}
+              >
+                Live Demo
+                <ArrowUpRight size={19} />
+              </a>
 
-        {project.stats?.length > 0 && (
-          <Stagger className={styles.statRow}>
-            {project.stats.map((stat, index) => {
-              const Icon = STAT_ICONS[index % STAT_ICONS.length];
-              return (
-                <StaggerItem key={stat.label}>
-                  <Card padding="sm" className={styles.statCard}>
-                    <Icon size={18} className={styles.statIcon} aria-hidden="true" />
-                    <div>
-                      <p className={styles.statValue}>{stat.value}</p>
-                      <p className={styles.statLabel}>{stat.label}</p>
+              <a
+                href={viewCode || undefined}
+                target={viewCode ? '_blank' : undefined}
+                rel={viewCode ? 'noopener noreferrer' : undefined}
+                aria-disabled={!viewCode}
+                title={
+                  viewCode
+                    ? 'View source code'
+                    : 'Add viewCode URL in project data to enable this link'
+                }
+                onClick={!viewCode ? (event) => event.preventDefault() : undefined}
+                className={`${styles.secondaryAction} ${!viewCode ? styles.actionDisabled : ''}`}
+              >
+                <GithubIcon size={21} />
+                View Code
+              </a>
+            </FadeIn>
+
+            {project.technologies?.length > 0 && (
+              <div className={styles.techRow}>
+                {project.technologies.map((tech) => (
+                  <TechBadge key={tech}>{tech}</TechBadge>
+                ))}
+              </div>
+            )}
+
+            {project.stats?.length > 0 && (
+              <Stagger className={styles.statRow}>
+                {project.stats.map((stat, index) => {
+                  const Icon = STAT_ICONS[index % STAT_ICONS.length];
+
+                  return (
+                    <StaggerItem key={stat.label}>
+                      <div className={styles.statItem}>
+                        <span className={styles.statIcon}>
+                          <Icon size={22} />
+                        </span>
+                        <div>
+                          <p className={styles.statValue}>{stat.value}</p>
+                          <p className={styles.statLabel}>{stat.label}</p>
+                        </div>
+                      </div>
+                    </StaggerItem>
+                  );
+                })}
+              </Stagger>
+            )}
+          </div>
+
+          <FadeIn delay={0.2} className={styles.previewColumn}>
+            {project.heroImage || project.thumbnail ? (
+              <div className={styles.previewFrame}>
+                <img
+                  src={project.heroImage || project.thumbnail}
+                  alt={`${project.title} application preview`}
+                  className={styles.previewImage}
+                />
+              </div>
+            ) : (
+              <div className={styles.previewPlaceholder}>
+                <div className={styles.previewTopbar}>
+                  <span className={styles.previewBrand}>
+                    <span className={styles.previewBrandMark}>B</span>
+                    {project.title}
+                  </span>
+                  <span className={styles.previewStatus}>Project Preview</span>
+                </div>
+
+                <div className={styles.previewBody}>
+                  <aside className={styles.previewSidebar}>
+                    {[
+                      'Dashboard',
+                      'Geography',
+                      'Members',
+                      'Assignments',
+                      'Reports',
+                      'Users',
+                      'Settings',
+                    ].map((item, index) => (
+                      <div
+                        key={item}
+                        className={`${styles.previewMenuItem} ${index === 1 ? styles.previewMenuActive : ''}`}
+                      >
+                        <span className={styles.menuDot} />
+                        {item}
+                      </div>
+                    ))}
+                  </aside>
+
+                  <div className={styles.previewDashboard}>
+                    <div className={styles.previewHeading}>
+                      <span>Geography Overview</span>
+                      <span className={styles.previewLive}>● Live</span>
                     </div>
-                  </Card>
-                </StaggerItem>
-              );
-            })}
-          </Stagger>
-        )}
-      </Section>
 
-      {sections.length > 1 && <SectionNav sections={sections} />}
+                    <div className={styles.previewMetrics}>
+                      {[
+                        ['28', 'States'],
+                        ['746', 'Districts'],
+                        ['5,432', 'Booths'],
+                        ['12,480', 'Members'],
+                      ].map(([value, label]) => (
+                        <div key={label} className={styles.previewMetric}>
+                          <strong>{value}</strong>
+                          <span>{label}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className={styles.previewLower}>
+                      <div className={styles.mapPanel}>
+                        <div className={styles.mapGrid} />
+                        <div className={styles.mapShape} aria-hidden="true">
+                          <svg
+                            viewBox="0 0 200 240"
+                            role="img"
+                            aria-label="Stylized India map"
+                          >
+                            <path
+                              d="M64 8 L94 18 L105 36 L130 42 L143 62 L128 79 L151 94 L137 112 L126 132 L113 150 L106 174 L91 205 L79 230 L66 210 L56 185 L47 162 L38 145 L30 123 L18 103 L34 83 L28 65 L47 49 L42 28 Z"
+                              fill="#9bb8dc"
+                              stroke="#d7e8ff"
+                              strokeWidth="2"
+                            />
+                            <path
+                              d="M64 8 L94 18 L105 36 L80 48 L47 49 L42 28 Z"
+                              fill="#c5d9f3"
+                            />
+                            <path
+                              d="M80 48 L105 36 L130 42 L143 62 L128 79 L99 80 L75 69 Z"
+                              fill="#6f95d1"
+                            />
+                            <path
+                              d="M75 69 L99 80 L128 79 L151 94 L137 112 L105 105 L80 98 Z"
+                              fill="#91acd8"
+                            />
+                            <path
+                              d="M80 98 L105 105 L137 112 L126 132 L100 140 L76 122 Z"
+                              fill="#547ab6"
+                            />
+                            <path
+                              d="M76 122 L100 140 L106 174 L91 205 L79 230 L66 210 L56 185 L47 162 L38 145 Z"
+                              fill="#c2d5ef"
+                            />
+                          </svg>
+                        </div>
+                        <span className={styles.mapCaption}>Geographic Distribution</span>
+                      </div>
+
+                      <div className={styles.activityPanel}>
+                        <h3>Recent Activities</h3>
+                        {[
+                          'New booth created',
+                          'Member assigned',
+                          'Geography updated',
+                          'New user registered',
+                        ].map((activity, index) => (
+                          <div key={activity} className={styles.activityItem}>
+                            <span className={styles.activityDot} />
+                            <div>
+                              <p>{activity}</p>
+                              <small>
+                                {
+                                  [
+                                    '2 minutes ago',
+                                    '12 minutes ago',
+                                    '1 hour ago',
+                                    '2 hours ago',
+                                  ][index]
+                                }
+                              </small>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className={styles.previewCaption}>
+              <span className={styles.captionLine} />
+              <span>Real Solutions. Real Impact.</span>
+            </div>
+          </FadeIn>
+        </div>
+
+        {sections.length > 1 && (
+          <nav className={styles.heroNav} aria-label="Project sections">
+            {sections.map((item, index) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={index === 0 ? styles.heroNavActive : styles.heroNavItem}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        )}
+      </section>
 
       <Section id="overview">
         <div className={project.keyFeatures?.length ? styles.overviewGrid : undefined}>
@@ -152,7 +349,7 @@ function ProjectDetailsPage() {
             <h2 className={styles.sectionTitle}>
               Project <span className={styles.highlight}>Overview</span>
             </h2>
-            <p className={styles.overviewText}>{project.description}</p>
+            <p className={styles.overviewText}>{project.overviewDetails}</p>
             {project.goal && (
               <Card padding="md" className={styles.goalCard}>
                 <span className={styles.goalIcon} aria-hidden="true">
@@ -194,17 +391,21 @@ function ProjectDetailsPage() {
       {(project.challenges?.length > 0 || project.results?.length > 0) && (
         <Section id="challenges" background="secondary">
           <div className={styles.checklistGrid}>
-            <ChecklistBlock
-              icon={<AlertTriangle size={18} />}
-              title="Challenges & Learnings"
-              items={project.challenges}
-            />
-            <ChecklistBlock
-              id="results"
-              icon={<TrendingUp size={18} />}
-              title="Results & Impact"
-              items={project.results}
-            />
+            {project.challenges?.length > 0 && (
+              <ChecklistBlock
+                icon={<AlertTriangle size={18} />}
+                title="Challenges & Learnings"
+                items={project.challenges}
+              />
+            )}
+            {project.results?.length > 0 && (
+              <ChecklistBlock
+                id="results"
+                icon={<TrendingUp size={18} />}
+                title="Results & Impact"
+                items={project.results}
+              />
+            )}
           </div>
         </Section>
       )}

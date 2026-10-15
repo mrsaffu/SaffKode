@@ -1,63 +1,81 @@
 import { memo } from 'react';
-import {
-  Code2,
-  Database,
-  Server,
-  Wrench,
-  Package,
-} from 'lucide-react';
+import { Code2, Database, Server, Wrench, Package } from 'lucide-react';
 
 import styles from './TechnologyIcon.module.css';
 
 const ICONS = {
-  JavaScript: 'https://cdn.simpleicons.org/javascript',
-  'React.js': 'https://cdn.simpleicons.org/react',
-  'React Router': 'https://cdn.simpleicons.org/reactrouter',
-  HTML5: 'https://cdn.simpleicons.org/html5',
-  CSS3: 'https://cdn.simpleicons.org/css3',
-  'Tailwind CSS': 'https://cdn.simpleicons.org/tailwindcss',
-  'Redux Toolkit': 'https://cdn.simpleicons.org/redux',
-  Axios: 'https://cdn.simpleicons.org/axios',
-  TypeScript: 'https://cdn.simpleicons.org/typescript',
-  Vite: 'https://cdn.simpleicons.org/vite',
-  'Node.js': 'https://cdn.simpleicons.org/nodedotjs',
-  'Express.js': 'https://cdn.simpleicons.org/express',
-  'JWT Authentication': 'https://cdn.simpleicons.org/jsonwebtokens',
-  Mongoose: 'https://cdn.simpleicons.org/mongoose',
-  'Socket.IO': 'https://cdn.simpleicons.org/socketdotio',
-  MongoDB: 'https://cdn.simpleicons.org/mongodb',
-  'MongoDB Atlas': 'https://cdn.simpleicons.org/mongodb',
-  MySQL: 'https://cdn.simpleicons.org/mysql',
-  PostgreSQL: 'https://cdn.simpleicons.org/postgresql',
-  Redis: 'https://cdn.simpleicons.org/redis',
-  Git: 'https://cdn.simpleicons.org/git',
-  GitHub: 'https://cdn.simpleicons.org/github',
-  Docker: 'https://cdn.simpleicons.org/docker',
-  AWS: 'https://cdn.simpleicons.org/amazonwebservices',
-  Vercel: 'https://cdn.simpleicons.org/vercel',
-  Postman: 'https://cdn.simpleicons.org/postman',
-  'VS Code': 'https://cdn.simpleicons.org/visualstudiocode',
-  npm: 'https://cdn.simpleicons.org/npm',
-  Yarn: 'https://cdn.simpleicons.org/yarn',
-  GitLab: 'https://cdn.simpleicons.org/gitlab',
-  Bitbucket: 'https://cdn.simpleicons.org/bitbucket',
-  Figma: 'https://cdn.simpleicons.org/figma',
-  Linux: 'https://cdn.simpleicons.org/linux',
-  Nginx: 'https://cdn.simpleicons.org/nginx',
-  Firebase: 'https://cdn.simpleicons.org/firebase',
-  Netlify: 'https://cdn.simpleicons.org/netlify',
+  JavaScript: 'https://cdn.simpleicons.org/javascript/F7DF1E',
+  'React.js': 'https://cdn.simpleicons.org/react/61DAFB',
+  'React Router': 'https://cdn.simpleicons.org/reactrouter/CA4245',
+  HTML5: 'https://cdn.simpleicons.org/html5/E34F26',
+  CSS3: 'https://cdn.simpleicons.org/css3/1572B6',
+  'Tailwind CSS': 'https://cdn.simpleicons.org/tailwindcss/06B6D4',
+  'Redux Toolkit': 'https://cdn.simpleicons.org/redux/764ABC',
+  Axios: 'https://cdn.simpleicons.org/axios/5A29E4',
+  TypeScript: 'https://cdn.simpleicons.org/typescript/3178C6',
+  Vite: 'https://cdn.simpleicons.org/vite/646CFF',
+  'Node.js': 'https://cdn.simpleicons.org/nodedotjs/339933',
+
+  // Explicit white color so Express is visible and matches
+  // the dark technology-card design.
+  'Express.js': 'https://cdn.simpleicons.org/express/FFFFFF',
+
+  'JWT Authentication': 'https://cdn.simpleicons.org/jsonwebtokens/D63AFF',
+
+  Mongoose: 'https://cdn.simpleicons.org/mongoose/880000',
+  'Socket.IO': 'https://cdn.simpleicons.org/socketdotio/FFFFFF',
+  MongoDB: 'https://cdn.simpleicons.org/mongodb/47A248',
+  'MongoDB Atlas': 'https://cdn.simpleicons.org/mongodb/47A248',
+  MySQL: 'https://cdn.simpleicons.org/mysql/4479A1',
+  PostgreSQL: 'https://cdn.simpleicons.org/postgresql/4169E1',
+  Redis: 'https://cdn.simpleicons.org/redis/DC382D',
+  Git: 'https://cdn.simpleicons.org/git/F05032',
+  GitHub: 'https://cdn.simpleicons.org/github/FFFFFF',
+  Docker: 'https://cdn.simpleicons.org/docker/2496ED',
+  AWS: 'https://cdn.simpleicons.org/amazonwebservices/FF9900',
+  'AWS EC2': 'https://cdn.simpleicons.org/amazonec2/FF9900',
+  Vercel: 'https://cdn.simpleicons.org/vercel/FFFFFF',
+  Postman: 'https://cdn.simpleicons.org/postman/FF6C37',
+  'VS Code': 'https://cdn.simpleicons.org/visualstudiocode/007ACC',
+  npm: 'https://cdn.simpleicons.org/npm/CB3837',
+  Yarn: 'https://cdn.simpleicons.org/yarn/2C8EBB',
+  GitLab: 'https://cdn.simpleicons.org/gitlab/FC6D26',
+  Bitbucket: 'https://cdn.simpleicons.org/bitbucket/2684FF',
+  Figma: 'https://cdn.simpleicons.org/figma/F24E1E',
+  Linux: 'https://cdn.simpleicons.org/linux/FCC624',
+  Nginx: 'https://cdn.simpleicons.org/nginx/009639',
+  Firebase: 'https://cdn.simpleicons.org/firebase/FFCA28',
+  Netlify: 'https://cdn.simpleicons.org/netlify/00C7B7',
 };
 
 const ALIASES = {
-  'AWS (EC2)': 'AWS EC2',
-  EC2: 'AWS EC2',
-  'Amazon EC2': 'AWS EC2',
-  'VSCode': 'VS Code',
-  'Visual Studio Code': 'VS Code',
+  React: 'React.js',
+  'React JS': 'React.js',
+  ReactJS: 'React.js',
+  'React.js': 'React.js',
+
+  'Node JS': 'Node.js',
+  NodeJS: 'Node.js',
+  Node: 'Node.js',
+
   'Express JS': 'Express.js',
   Express: 'Express.js',
-  MongooseJS: 'Mongoose',
+  ExpressJS: 'Express.js',
+
   Mongo: 'MongoDB',
+  MongoDBJS: 'MongoDB',
+
+  MongooseJS: 'Mongoose',
+
+  JS: 'JavaScript',
+  TS: 'TypeScript',
+
+  VSCode: 'VS Code',
+  'Visual Studio Code': 'VS Code',
+
+  EC2: 'AWS EC2',
+  'Amazon EC2': 'AWS EC2',
+  'AWS (EC2)': 'AWS EC2',
 };
 
 const BRAND_COLORS = {
@@ -72,10 +90,10 @@ const BRAND_COLORS = {
   TypeScript: '#3178C6',
   Vite: '#646CFF',
   'Node.js': '#339933',
-  'Express.js': '#000000',
+  'Express.js': '#FFFFFF',
   'JWT Authentication': '#D63AFF',
   Mongoose: '#880000',
-  'Socket.IO': '#010101',
+  'Socket.IO': '#FFFFFF',
   MongoDB: '#47A248',
   'MongoDB Atlas': '#47A248',
   MySQL: '#4479A1',
@@ -111,9 +129,9 @@ const FALLBACK_ICONS = {
 function normalizeName(name) {
   if (!name) return '';
 
-  const trimmedName = name.trim();
+  const value = String(name).trim();
 
-  return ALIASES[trimmedName] || trimmedName;
+  return ALIASES[value] || value;
 }
 
 function TechnologyIcon({
@@ -128,8 +146,7 @@ function TechnologyIcon({
   const iconSource = ICONS[normalizedName];
   const brandColor = BRAND_COLORS[normalizedName];
 
-  const FallbackIcon =
-    FALLBACK_ICONS[category] || Package;
+  const FallbackIcon = FALLBACK_ICONS[category] || Package;
 
   if (!iconSource) {
     if (!showFallback) return null;
