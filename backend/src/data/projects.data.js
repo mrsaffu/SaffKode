@@ -170,12 +170,12 @@ Its modular frontend architecture supports maintainability, organized content pr
       { name: 'Git & GitHub', role: 'Version Control' },
     ],
 
-    screenshots: [
-      { title: 'Dashboard', description: 'Homepage overview and key institutional information' },
-      { title: 'Academic Information', description: 'Curriculum details and educational programs' },
-      { title: 'Faculty & Admissions', description: 'Faculty profiles and admission-related information' },
-      { title: 'Events & Gallery', description: 'School activities, events, and campus photographs' },
-    ],
+    // screenshots: [
+    //   { title: 'Dashboard', description: 'Homepage overview and key institutional information' },
+    //   { title: 'Academic Information', description: 'Curriculum details and educational programs' },
+    //   { title: 'Faculty & Admissions', description: 'Faculty profiles and admission-related information' },
+    //   { title: 'Events & Gallery', description: 'School activities, events, and campus photographs' },
+    // ],
 
     challenges: [
       'Creating a responsive interface for multiple screen sizes.',

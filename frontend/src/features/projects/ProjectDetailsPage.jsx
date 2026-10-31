@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -9,6 +10,7 @@ import {
   TrendingUp,
   ArrowUpRight,
 } from 'lucide-react';
+
 import { useApi } from '../../hooks/useApi';
 import { getProjectBySlug } from '../../services/api/projectsApi';
 import PageContainer from '../../components/layout/PageContainer';
@@ -18,11 +20,13 @@ import Card from '../../components/ui/Card';
 import { TechBadge, LoadingState, ErrorState, CTABanner } from '../../components/common';
 import { GithubIcon } from '../../components/common/BrandIcons';
 import { SlideUp, FadeIn, Stagger, StaggerItem } from '../../components/animation';
-// import SectionNav from './sections/SectionNav';
+
 import FeaturesCarousel from './sections/FeaturesCarousel';
 import TechStackDetailGrid from './sections/TechStackDetailGrid';
 import ScreenshotGallery from './sections/ScreenshotGallery';
 import ChecklistBlock from './sections/ChecklistBlock';
+
+import projectImages from './data/projectImages';
 import styles from './ProjectDetailsPage.module.css';
 
 const STAT_ICONS = [ShieldCheck, Database, Layers];
@@ -30,11 +34,139 @@ const STAT_ICONS = [ShieldCheck, Database, Layers];
 function splitTitle(title = '') {
   const words = title.trim().split(/\s+/);
   const last = words.pop() || '';
-  return { lead: words.join(' '), last };
+
+  return {
+    lead: words.join(' '),
+    last,
+  };
+}
+
+function ProjectPreviewPlaceholder({ title }) {
+  const menuItems = [
+    'Dashboard',
+    'Geography',
+    'Members',
+    'Assignments',
+    'Reports',
+    'Users',
+    'Settings',
+  ];
+
+  const metrics = [
+    ['28', 'States'],
+    ['746', 'Districts'],
+    ['5,432', 'Booths'],
+    ['12,480', 'Members'],
+  ];
+
+  const activities = [
+    ['New booth created', '2 minutes ago'],
+    ['Member assigned', '12 minutes ago'],
+    ['Geography updated', '1 hour ago'],
+    ['New user registered', '2 hours ago'],
+  ];
+
+  return (
+    <div className={styles.previewPlaceholder}>
+      <div className={styles.previewTopbar}>
+        <span className={styles.previewBrand}>
+          <span className={styles.previewBrandMark}>P</span>
+          {title}
+        </span>
+
+        <span className={styles.previewStatus}>Project Preview</span>
+      </div>
+
+      <div className={styles.previewBody}>
+        <aside className={styles.previewSidebar}>
+          {menuItems.map((item, index) => (
+            <div
+              key={item}
+              className={`${styles.previewMenuItem} ${
+                index === 1 ? styles.previewMenuActive : ''
+              }`}
+            >
+              <span className={styles.menuDot} />
+              {item}
+            </div>
+          ))}
+        </aside>
+
+        <div className={styles.previewDashboard}>
+          <div className={styles.previewHeading}>
+            <span>Geography Overview</span>
+            <span className={styles.previewLive}>● Live</span>
+          </div>
+
+          <div className={styles.previewMetrics}>
+            {metrics.map(([value, label]) => (
+              <div key={label} className={styles.previewMetric}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.previewLower}>
+            <div className={styles.mapPanel}>
+              <div className={styles.mapGrid} />
+
+              <div className={styles.mapShape} aria-hidden="true">
+                <svg viewBox="0 0 200 240" role="img" aria-label="Stylized India map">
+                  <path
+                    d="M64 8 L94 18 L105 36 L130 42 L143 62 L128 79 L151 94 L137 112 L126 132 L113 150 L106 174 L91 205 L79 230 L66 210 L56 185 L47 162 L38 145 L30 123 L18 103 L34 83 L28 65 L47 49 L42 28 Z"
+                    fill="#9bb8dc"
+                    stroke="#d7e8ff"
+                    strokeWidth="2"
+                  />
+                  <path d="M64 8 L94 18 L105 36 L80 48 L47 49 L42 28 Z" fill="#c5d9f3" />
+                  <path
+                    d="M80 48 L105 36 L130 42 L143 62 L128 79 L99 80 L75 69 Z"
+                    fill="#6f95d1"
+                  />
+                  <path
+                    d="M75 69 L99 80 L128 79 L151 94 L137 112 L105 105 L80 98 Z"
+                    fill="#91acd8"
+                  />
+                  <path
+                    d="M80 98 L105 105 L137 112 L126 132 L100 140 L76 122 Z"
+                    fill="#547ab6"
+                  />
+                  <path
+                    d="M76 122 L100 140 L106 174 L91 205 L79 230 L66 210 L56 185 L47 162 L38 145 Z"
+                    fill="#c2d5ef"
+                  />
+                </svg>
+              </div>
+
+              <span className={styles.mapCaption}>Geographic Distribution</span>
+            </div>
+
+            <div className={styles.activityPanel}>
+              <h3>Recent Activities</h3>
+
+              {activities.map(([activity, time]) => (
+                <div key={activity} className={styles.activityItem}>
+                  <span className={styles.activityDot} />
+
+                  <div>
+                    <p>{activity}</p>
+                    <small>{time}</small>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function ProjectDetailsPage() {
   const { slug } = useParams();
+
+  const [heroImageFailed, setHeroImageFailed] = useState(false);
 
   const {
     data: project,
@@ -42,6 +174,10 @@ function ProjectDetailsPage() {
     isLoading,
     retry,
   } = useApi(() => getProjectBySlug(slug), [slug]);
+
+  useEffect(() => {
+    setHeroImageFailed(false);
+  }, [slug]);
 
   if (isLoading) {
     return (
@@ -63,6 +199,7 @@ function ProjectDetailsPage() {
           }
           onRetry={error?.status === 404 ? undefined : retry}
         />
+
         <div className={styles.backLinkWrapper}>
           <Button to="/projects" variant="ghost" icon={<ArrowLeft size={16} />}>
             Back to Projects
@@ -72,15 +209,49 @@ function ProjectDetailsPage() {
     );
   }
 
+  /*
+   * Backend supplies the project content.
+   * Frontend supplies images mapped by the project slug.
+   */
+  const projectVisuals = projectImages[project.slug] ?? {
+    hero: null,
+    screenshots: [],
+  };
+
+  /*
+   * Preserve screenshot titles and descriptions from the backend.
+   * Add image paths from the frontend mapping by array position.
+   */
+  const screenshots = (project.screenshots ?? []).map((screenshot, index) => ({
+    ...screenshot,
+    image: projectVisuals.screenshots[index]?.image ?? null,
+    alt: projectVisuals.screenshots[index]?.alt ?? screenshot.title ?? project.title,
+  }));
+
   const { lead, last } = splitTitle(project.title);
 
   const sections = [
     { id: 'overview', label: 'Overview' },
-    project.keyFeatures?.length && { id: 'features', label: 'Features' },
-    project.techStackDetailed?.length && { id: 'tech-stack', label: 'Tech Stack' },
-    project.screenshots?.length && { id: 'screenshots', label: 'Screenshots' },
-    project.challenges?.length && { id: 'challenges', label: 'Challenges' },
-    project.results?.length && { id: 'results', label: 'Results' },
+    project.keyFeatures?.length && {
+      id: 'features',
+      label: 'Features',
+    },
+    project.techStackDetailed?.length && {
+      id: 'tech-stack',
+      label: 'Tech Stack',
+    },
+    screenshots.length && {
+      id: 'screenshots',
+      label: 'Screenshots',
+    },
+    project.challenges?.length && {
+      id: 'challenges',
+      label: 'Challenges',
+    },
+    project.results?.length && {
+      id: 'results',
+      label: 'Results',
+    },
   ].filter(Boolean);
 
   const liveDemo = project.liveDemo ?? project.liveUrl;
@@ -88,6 +259,7 @@ function ProjectDetailsPage() {
 
   return (
     <main className={styles.projectPage}>
+      {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroGrid} aria-hidden="true" />
@@ -134,7 +306,9 @@ function ProjectDetailsPage() {
                     : 'Add liveDemo URL in project data to enable this link'
                 }
                 onClick={!liveDemo ? (event) => event.preventDefault() : undefined}
-                className={`${styles.primaryAction} ${!liveDemo ? styles.actionDisabled : ''}`}
+                className={`${styles.primaryAction} ${
+                  !liveDemo ? styles.actionDisabled : ''
+                }`}
               >
                 Live Demo
                 <ArrowUpRight size={19} />
@@ -151,7 +325,9 @@ function ProjectDetailsPage() {
                     : 'Add viewCode URL in project data to enable this link'
                 }
                 onClick={!viewCode ? (event) => event.preventDefault() : undefined}
-                className={`${styles.secondaryAction} ${!viewCode ? styles.actionDisabled : ''}`}
+                className={`${styles.secondaryAction} ${
+                  !viewCode ? styles.actionDisabled : ''
+                }`}
               >
                 <GithubIcon size={21} />
                 View Code
@@ -177,6 +353,7 @@ function ProjectDetailsPage() {
                         <span className={styles.statIcon}>
                           <Icon size={22} />
                         </span>
+
                         <div>
                           <p className={styles.statValue}>{stat.value}</p>
                           <p className={styles.statLabel}>{stat.label}</p>
@@ -190,135 +367,17 @@ function ProjectDetailsPage() {
           </div>
 
           <FadeIn delay={0.2} className={styles.previewColumn}>
-            {project.heroImage || project.thumbnail ? (
+            {projectVisuals.hero && !heroImageFailed ? (
               <div className={styles.previewFrame}>
                 <img
-                  src={project.heroImage || project.thumbnail}
+                  src={projectVisuals.hero}
                   alt={`${project.title} application preview`}
                   className={styles.previewImage}
+                  onError={() => setHeroImageFailed(true)}
                 />
               </div>
             ) : (
-              <div className={styles.previewPlaceholder}>
-                <div className={styles.previewTopbar}>
-                  <span className={styles.previewBrand}>
-                    <span className={styles.previewBrandMark}>B</span>
-                    {project.title}
-                  </span>
-                  <span className={styles.previewStatus}>Project Preview</span>
-                </div>
-
-                <div className={styles.previewBody}>
-                  <aside className={styles.previewSidebar}>
-                    {[
-                      'Dashboard',
-                      'Geography',
-                      'Members',
-                      'Assignments',
-                      'Reports',
-                      'Users',
-                      'Settings',
-                    ].map((item, index) => (
-                      <div
-                        key={item}
-                        className={`${styles.previewMenuItem} ${index === 1 ? styles.previewMenuActive : ''}`}
-                      >
-                        <span className={styles.menuDot} />
-                        {item}
-                      </div>
-                    ))}
-                  </aside>
-
-                  <div className={styles.previewDashboard}>
-                    <div className={styles.previewHeading}>
-                      <span>Geography Overview</span>
-                      <span className={styles.previewLive}>● Live</span>
-                    </div>
-
-                    <div className={styles.previewMetrics}>
-                      {[
-                        ['28', 'States'],
-                        ['746', 'Districts'],
-                        ['5,432', 'Booths'],
-                        ['12,480', 'Members'],
-                      ].map(([value, label]) => (
-                        <div key={label} className={styles.previewMetric}>
-                          <strong>{value}</strong>
-                          <span>{label}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className={styles.previewLower}>
-                      <div className={styles.mapPanel}>
-                        <div className={styles.mapGrid} />
-                        <div className={styles.mapShape} aria-hidden="true">
-                          <svg
-                            viewBox="0 0 200 240"
-                            role="img"
-                            aria-label="Stylized India map"
-                          >
-                            <path
-                              d="M64 8 L94 18 L105 36 L130 42 L143 62 L128 79 L151 94 L137 112 L126 132 L113 150 L106 174 L91 205 L79 230 L66 210 L56 185 L47 162 L38 145 L30 123 L18 103 L34 83 L28 65 L47 49 L42 28 Z"
-                              fill="#9bb8dc"
-                              stroke="#d7e8ff"
-                              strokeWidth="2"
-                            />
-                            <path
-                              d="M64 8 L94 18 L105 36 L80 48 L47 49 L42 28 Z"
-                              fill="#c5d9f3"
-                            />
-                            <path
-                              d="M80 48 L105 36 L130 42 L143 62 L128 79 L99 80 L75 69 Z"
-                              fill="#6f95d1"
-                            />
-                            <path
-                              d="M75 69 L99 80 L128 79 L151 94 L137 112 L105 105 L80 98 Z"
-                              fill="#91acd8"
-                            />
-                            <path
-                              d="M80 98 L105 105 L137 112 L126 132 L100 140 L76 122 Z"
-                              fill="#547ab6"
-                            />
-                            <path
-                              d="M76 122 L100 140 L106 174 L91 205 L79 230 L66 210 L56 185 L47 162 L38 145 Z"
-                              fill="#c2d5ef"
-                            />
-                          </svg>
-                        </div>
-                        <span className={styles.mapCaption}>Geographic Distribution</span>
-                      </div>
-
-                      <div className={styles.activityPanel}>
-                        <h3>Recent Activities</h3>
-                        {[
-                          'New booth created',
-                          'Member assigned',
-                          'Geography updated',
-                          'New user registered',
-                        ].map((activity, index) => (
-                          <div key={activity} className={styles.activityItem}>
-                            <span className={styles.activityDot} />
-                            <div>
-                              <p>{activity}</p>
-                              <small>
-                                {
-                                  [
-                                    '2 minutes ago',
-                                    '12 minutes ago',
-                                    '1 hour ago',
-                                    '2 hours ago',
-                                  ][index]
-                                }
-                              </small>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProjectPreviewPlaceholder title={project.title} />
             )}
 
             <div className={styles.previewCaption}>
@@ -343,18 +402,22 @@ function ProjectDetailsPage() {
         )}
       </section>
 
+      {/* OVERVIEW AND FEATURES */}
       <Section id="overview">
         <div className={project.keyFeatures?.length ? styles.overviewGrid : undefined}>
           <div>
             <h2 className={styles.sectionTitle}>
               Project <span className={styles.highlight}>Overview</span>
             </h2>
+
             <p className={styles.overviewText}>{project.overviewDetails}</p>
+
             {project.goal && (
               <Card padding="md" className={styles.goalCard}>
                 <span className={styles.goalIcon} aria-hidden="true">
                   <Target size={18} />
                 </span>
+
                 <div>
                   <p className={styles.goalLabel}>Goal</p>
                   <p className={styles.goalText}>{project.goal}</p>
@@ -368,26 +431,31 @@ function ProjectDetailsPage() {
               <h2 className={styles.sectionTitle}>
                 Key <span className={styles.highlight}>Features</span>
               </h2>
+
               <FeaturesCarousel features={project.keyFeatures} />
             </div>
           )}
         </div>
       </Section>
 
+      {/* TECHNOLOGY STACK */}
       {project.techStackDetailed?.length > 0 && (
         <Section id="tech-stack" background="secondary">
           <h2 className={styles.sectionTitle}>Technology Stack</h2>
+
           <TechStackDetailGrid items={project.techStackDetailed} />
         </Section>
       )}
 
-      {project.screenshots?.length > 0 && (
+      {/* SCREENSHOTS */}
+      {screenshots.length > 0 && (
         <Section id="screenshots">
           <h2 className={styles.sectionTitle}>Application Screenshots</h2>
-          <ScreenshotGallery screenshots={project.screenshots} />
+          <ScreenshotGallery screenshots={screenshots} />
         </Section>
       )}
 
+      {/* CHALLENGES AND RESULTS */}
       {(project.challenges?.length > 0 || project.results?.length > 0) && (
         <Section id="challenges" background="secondary">
           <div className={styles.checklistGrid}>
@@ -398,6 +466,7 @@ function ProjectDetailsPage() {
                 items={project.challenges}
               />
             )}
+
             {project.results?.length > 0 && (
               <ChecklistBlock
                 id="results"
@@ -410,6 +479,7 @@ function ProjectDetailsPage() {
         </Section>
       )}
 
+      {/* CTA */}
       <CTABanner
         title="Let's Build Something Amazing Together!"
         subtitle="Interested in a similar solution? I'm always open to meaningful projects, collaborations, and opportunities."
